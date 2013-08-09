@@ -1,4 +1,4 @@
-package de.mrpixeldream.school.carsim;
+package net.dreamcode.carsim;
 
 public class CarSimulation {
 	
