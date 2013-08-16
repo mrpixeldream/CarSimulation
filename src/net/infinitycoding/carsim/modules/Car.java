@@ -4,5 +4,5 @@ import java.awt.Rectangle;
 
 public class Car
 {
-	Rectangle collisionRect = new Rectangle();
+	Rectangle collisionBox = new Rectangle();
 }
