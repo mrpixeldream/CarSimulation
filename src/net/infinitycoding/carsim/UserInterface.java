@@ -1,7 +1,20 @@
 package net.infinitycoding.carsim;
 
-public class UserInterface {
+import javax.swing.JFrame;
+
+public class UserInterface extends JFrame {
 	
+	Canvas canvas;
 	
+	public UserInterface()
+	{
+		this.setBounds(0, 0, 1280, 1024);
+		
+		this.canvas = new Canvas(1280, 1024);
+		this.add(canvas);
+		
+		this.pack();
+		this.setVisible(true);
+	}
 	
 }
