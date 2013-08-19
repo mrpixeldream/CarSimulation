@@ -16,5 +16,11 @@ public class UserInterface extends JFrame {
 		this.pack();
 		this.setVisible(true);
 	}
+
+	public void checkCollision()
+	{
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

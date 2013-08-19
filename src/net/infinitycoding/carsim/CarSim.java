@@ -3,7 +3,6 @@ package net.infinitycoding.carsim;
 import java.util.ArrayList;
 
 import net.infinitycoding.carsim.modules.Car;
-import net.infinitycoding.carsim.testing.Test;
 import net.infinitycoding.carsim.util.CarGenerator;
 
 public class CarSim {
@@ -11,6 +10,7 @@ public class CarSim {
 	private boolean run = false;
 	private ArrayList<Car> cars = new ArrayList<Car>();
 	private CarGenerator generator;
+	private UserInterface userInterface;
 
 	public static void main(String[] args) {
 		
@@ -23,7 +23,7 @@ public class CarSim {
 		long afterTime = 0;
 		long difTime = 0;
 		
-		UserInterface userInterface = new UserInterface();
+		userInterface = new UserInterface();
 		
 		generator = new CarGenerator();
 		
@@ -34,11 +34,13 @@ public class CarSim {
 			
 			this.cars.addAll(this.generator.genNewCars());
 			this.moveCars(difTime);
+			this.userInterface.checkCollision();
 			
 			afterTime = System.currentTimeMillis();
 		}
 	}
 	
+
 	private void moveCars(long difTime)
 	{
 		
