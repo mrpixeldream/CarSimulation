@@ -5,5 +5,6 @@ import java.awt.Rectangle;
 public class Car {
 	
 	Rectangle collisionBox = new Rectangle();
+	public boolean drive = true;
 	
 }
