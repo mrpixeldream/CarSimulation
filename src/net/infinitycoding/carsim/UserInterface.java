@@ -22,5 +22,11 @@ public class UserInterface extends JFrame {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void drawCars()
+	{
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

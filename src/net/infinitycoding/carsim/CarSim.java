@@ -34,6 +34,7 @@ public class CarSim {
 			
 			this.cars.addAll(this.generator.genNewCars());
 			this.moveCars(difTime);
+			this.userInterface.drawCars();
 			this.userInterface.checkCollision();
 			
 			afterTime = System.currentTimeMillis();
