@@ -8,12 +8,13 @@ public class UserInterface extends JFrame {
 	
 	public UserInterface()
 	{
+		super();
+		
 		this.setBounds(0, 0, 1280, 1024);
 		
 		this.canvas = new Canvas(1280, 1024);
 		this.add(canvas);
 		
-		this.pack();
 		this.setVisible(true);
 	}
 	
