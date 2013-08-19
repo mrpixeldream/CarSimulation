@@ -1,6 +1,7 @@
 package net.infinitycoding.carsim;
 
-public class UserInterface
-{
-
+public class UserInterface {
+	
+	
+	
 }

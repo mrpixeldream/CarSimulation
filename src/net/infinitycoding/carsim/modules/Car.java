@@ -2,7 +2,8 @@ package net.infinitycoding.carsim.modules;
 
 import java.awt.Rectangle;
 
-public class Car
-{
+public class Car {
+	
 	Rectangle collisionBox = new Rectangle();
+	
 }
