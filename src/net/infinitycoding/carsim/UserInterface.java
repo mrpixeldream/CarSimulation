@@ -17,5 +17,17 @@ public class UserInterface extends JFrame {
 		
 		this.setVisible(true);
 	}
+
+	public void checkCollision()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void drawCars()
+	{
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
