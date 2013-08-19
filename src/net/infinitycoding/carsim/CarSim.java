@@ -2,13 +2,14 @@ package net.infinitycoding.carsim;
 
 import java.util.ArrayList;
 
+import net.infinitycoding.carsim.modules.Car;
 import net.infinitycoding.carsim.testing.Test;
 import net.infinitycoding.carsim.util.CarGenerator;
 
 public class CarSim {
 	
 	private boolean run = false;
-	private ArrayList Cars = new ArrayList();
+	private ArrayList<Car> cars = new ArrayList<Car>();
 
 	public static void main(String[] args) {
 		
@@ -40,12 +41,12 @@ public class CarSim {
 		
 	}
 
-	public boolean isRun()
+	public boolean isRunning()
 	{
 		return run;
 	}
 
-	public void setRun(boolean run)
+	public void setRunning(boolean run)
 	{
 		this.run = run;
 	}
