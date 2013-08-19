@@ -14,7 +14,7 @@ public class CarSim {
 
 	public static void main(String[] args) {
 		
-		new Test().start();
+		new CarSim().start();
 		
 	}
 	
@@ -32,7 +32,7 @@ public class CarSim {
 			difTime = afterTime - beforeTime;
 			beforeTime = System.currentTimeMillis();
 			
-			this.Cars.addAll(this.generator.genNewCars());
+			this.cars.addAll(this.generator.genNewCars());
 			this.moveCars(difTime);
 			
 			afterTime = System.currentTimeMillis();
