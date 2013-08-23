@@ -44,7 +44,7 @@ public class CarSim {
 
 	private void moveCars(long difTime)
 	{
-		for(Car car : (Car[]) cars.toArray()){
+		for(Car car : (Car[]) cars.toArray()) {
 			
 		}
 		

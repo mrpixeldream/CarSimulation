@@ -11,7 +11,7 @@ public class Canvas extends JPanel {
 		this.setBounds(0, 0, width, height);
 		
 		JLabel bgImg = new JLabel(new ImageIcon(CarSim.class.getResource("res/test.jpg")));
-		bgImg.setBounds(0, 0, width, height);
+		bgImg.setBounds(0, -5, width, height);
 		
 		this.add(bgImg);
 		this.setVisible(true);

@@ -10,7 +10,9 @@ public class UserInterface extends JFrame {
 	{
 		super();
 		
-		this.setBounds(0, 0, 1280, 1024);
+		this.setBounds(0, 0, 1280, 1000);
+		
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		this.canvas = new Canvas(1280, 1024);
 		this.add(canvas);
