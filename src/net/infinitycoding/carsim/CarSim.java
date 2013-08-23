@@ -5,20 +5,20 @@ import java.util.ArrayList;
 import net.infinitycoding.carsim.modules.Car;
 import net.infinitycoding.carsim.util.CarGenerator;
 
-public class CarSim {
-	
+public class CarSim
+{
 	private boolean run = false;
 	private ArrayList<Car> cars = new ArrayList<Car>();
 	private CarGenerator generator;
 	private UserInterface userInterface;
 
-	public static void main(String[] args) {
-		
+	public static void main(String[] args)
+	{
 		new CarSim().start();
-		
 	}
 	
-	public void start(){
+	public void start()
+	{
 		long beforeTime = 0;
 		long afterTime = 0;
 		long difTime = 0;
@@ -27,7 +27,8 @@ public class CarSim {
 		
 		generator = new CarGenerator();
 		
-		while(this.run){
+		while(this.run)
+		{
 			//Hauptschleife
 			difTime = afterTime - beforeTime;
 			beforeTime = System.currentTimeMillis();
@@ -44,10 +45,10 @@ public class CarSim {
 
 	private void moveCars(long difTime)
 	{
-		for(Car car : (Car[]) cars.toArray()){
+		for(Car car : (Car[]) cars.toArray())
+		{
 			
 		}
-		
 	}
 
 	public boolean isRunning()
