@@ -1,4 +1,4 @@
 CarSimulation
 =============
 
-A small simulation made in the IT course
+A small simulation made in the Computer Science Class.
