@@ -3,6 +3,7 @@ package net.infinitycoding.carsim;
 import java.util.ArrayList;
 
 import net.infinitycoding.carsim.modules.Car;
+import net.infinitycoding.carsim.modules.Level;
 import net.infinitycoding.carsim.util.CarGenerator;
 
 public class CarSim
@@ -11,6 +12,7 @@ public class CarSim
 	private ArrayList<Car> cars = new ArrayList<Car>();
 	private CarGenerator generator;
 	private UserInterface userInterface;
+	private Level level;
 
 	public static void main(String[] args)
 	{
@@ -33,7 +35,7 @@ public class CarSim
 			difTime = afterTime - beforeTime;
 			beforeTime = System.currentTimeMillis();
 			
-			this.cars.addAll(this.generator.genNewCars());
+			this.cars.add(this.generator.genNewCars(this.cars,this.level));
 			this.moveCars(difTime);
 			this.userInterface.drawCars();
 			this.userInterface.checkCollision();
