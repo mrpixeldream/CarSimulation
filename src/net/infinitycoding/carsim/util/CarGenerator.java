@@ -1,7 +1,6 @@
 package net.infinitycoding.carsim.util;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import net.infinitycoding.carsim.modules.Car;
 import net.infinitycoding.carsim.modules.Level;
@@ -16,7 +15,7 @@ public class CarGenerator
 			double zahl = Math.random();
 			if(zahl <= level.CAR_RATIO)
 			{
-				int strasse = (int) Math.random() * 4;
+				int strasse = (int) (Math.random() * level.streetcount);
 				Car neu = new Car(strasse);
 				return neu;
 			}

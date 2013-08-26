@@ -10,10 +10,12 @@ public class Level
 	
 	public int MAX_CARS = 0;
 	public long CAR_RATIO = 0L;
+	public int streetcount = 0;
 	
 	public Level(Street[] streets, int maxCars, long carRatio)
 	{
 		int streetNumIndex = 0;
+		streetcount = streets.length;
 		
 		for (Street elem : streets)
 		{
