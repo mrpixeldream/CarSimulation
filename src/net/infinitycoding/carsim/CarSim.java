@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import net.infinitycoding.carsim.modules.Car;
 import net.infinitycoding.carsim.modules.Level;
+import net.infinitycoding.carsim.modules.io.LevelLoader;
 import net.infinitycoding.carsim.util.CarGenerator;
 
 public class CarSim
@@ -29,7 +30,9 @@ public class CarSim
 		
 		generator = new CarGenerator();
 		
-		while(this.run)
+		LevelLoader.loadLevel("res/test.lvl");
+		
+		/**while(this.run)
 		{
 			//Hauptschleife
 			difTime = afterTime - beforeTime;
@@ -41,7 +44,7 @@ public class CarSim
 			this.userInterface.checkCollision();
 			
 			afterTime = System.currentTimeMillis();
-		}
+		}**/
 	}
 	
 

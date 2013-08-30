@@ -1,37 +1,34 @@
 package net.infinitycoding.carsim.modules.io;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
-import javax.swing.JOptionPane;
-
+import net.infinitycoding.carsim.CarSim;
 import net.infinitycoding.carsim.modules.Level;
 
 public class LevelLoader
 {
+	static HashMap<String, String> lvlContent = new HashMap<String, String>();
+	
 	public static Level loadLevel(String lvlFileName)
 	{
-		File lvlFile = new File(lvlFileName);
-		try
-		{
-			Scanner scr = new Scanner(lvlFile);
-			StringTokenizer tokenizer;
+
+			Scanner scr = new Scanner(CarSim.class.getResourceAsStream(lvlFileName));
 			
 			while (scr.hasNext())
 			{
 				String line = scr.nextLine();
-				tokenizer = new StringTokenizer(line, "=");
+				System.out.println("Line: " + line);
+				String key = line.split("=")[0];
+				String val = line.split("=")[1];
+				lvlContent.put(key, val);
+				
+				// DEBUGPART //
+				System.out.println("Key: " + key);
+				System.out.println("Value: " + val);
+				System.out.println("------------------");
 			}
-		}
-		catch (FileNotFoundException e)
-		{
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Datei nicht gefunden!", "Dateifehler", JOptionPane.ERROR_MESSAGE);
-		}
+		
 		
 		return null;
 	}
