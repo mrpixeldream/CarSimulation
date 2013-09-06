@@ -4,8 +4,11 @@ import java.awt.Rectangle;
 
 public class Car
 {
-	Rectangle collisionBox = new Rectangle();
-	boolean isDriving = true;
+	public Rectangle collisionBox = new Rectangle();
+	public boolean isDriving = true;
+	public int direction;
+	public int x;
+	public int y;
 	
 	public Car(int streetNum)
 	{

@@ -47,10 +47,51 @@ public class CarSim
 
 	private void moveCars(long difTime)
 	{
+		boolean collision;
 		for(Car car : (Car[]) cars.toArray())
 		{
-			
+			collision = false;
+			if(car.isDriving)
+			{				
+				for(Car other_car : (Car[]) cars.toArray())
+				{
+					if(car.collisionBox.intersects(other_car.collisionBox))
+					{
+						if(other_car.isDriving)
+						{
+							this.gameOver();
+						}
+						else
+						{
+							collision = true;
+						}
+					}
+				}
+				if(!collision)
+				{
+					switch(car.direction)
+					{
+						case 1:
+							car.y += 1;
+							break;
+						case 2:
+							car.x += 1;
+							break;
+						case 3:
+							car.y -= 1;
+							break;
+						case 4:
+							car.x -= 1;
+							break;
+						}
+				}
+			}
 		}
+	}
+
+	private void gameOver() {
+		System.out.println("Gameover!!!");
+		
 	}
 
 	public boolean isRunning()
