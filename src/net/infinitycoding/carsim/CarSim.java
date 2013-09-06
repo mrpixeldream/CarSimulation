@@ -2,6 +2,9 @@ package net.infinitycoding.carsim;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
+import net.infinitycoding.carsim.exceptions.LevelFormatException;
 import net.infinitycoding.carsim.modules.Car;
 import net.infinitycoding.carsim.modules.Level;
 import net.infinitycoding.carsim.modules.io.LevelLoader;
@@ -30,7 +33,14 @@ public class CarSim
 		
 		generator = new CarGenerator();
 		
-		LevelLoader.loadLevel("res/test.lvl");
+		try
+		{
+			LevelLoader.loadLevel("res/test.lvl");
+		}
+		catch (LevelFormatException ex)
+		{
+			JOptionPane.showMessageDialog(null, ex.getMessage(), "Leveldatei-Fehler", JOptionPane.ERROR_MESSAGE);
+		}
 		
 		/**while(this.run)
 		{

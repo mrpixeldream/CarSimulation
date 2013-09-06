@@ -6,7 +6,7 @@ public class LevelTest
 {
 	public static void main(String[] args)
 	{
-		Level lvl = LevelLoader.loadLevel("res/levels/test.lvl");
+		//Level lvl = LevelLoader.loadLevel("res/levels/test.lvl");
 		
 	}
 }
