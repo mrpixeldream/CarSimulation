@@ -9,10 +9,10 @@ public class Level
 	public int carCount  = 0;
 	
 	public int MAX_CARS = 0;
-	public long CAR_RATIO = 0L;
+	public float CAR_RATIO = 0F;
 	public int streetcount = 0;
 	
-	public Level(Street[] streets, int maxCars, long carRatio)
+	public Level(Street[] streets, int maxCars, float carRatio)
 	{
 		int streetNumIndex = 0;
 		streetcount = streets.length;

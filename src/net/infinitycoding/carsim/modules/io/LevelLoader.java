@@ -8,12 +8,13 @@ import java.util.Set;
 import net.infinitycoding.carsim.CarSim;
 import net.infinitycoding.carsim.exceptions.LevelFormatException;
 import net.infinitycoding.carsim.modules.Level;
+import net.infinitycoding.carsim.modules.Street;
 
 public class LevelLoader
 {	
 	static String lvlPic;
 	static int maxCars;
-	static long carRatio;
+	static float carRatio;
 	static int streetCount;
 	static HashMap<Integer, Integer> stopLineCoords = new HashMap<Integer, Integer>();
 	static ArrayList<Integer> carSpawns;
@@ -40,9 +41,11 @@ public class LevelLoader
 		
 		Set<String> keys = contents.keySet();
 		
+		int lineCount = 0;
 		for (String elem : keys)
 		{
-			if (elem.equalsIgnoreCase("lvlpic"))
+			lineCount++;
+			if (elem.equalsIgnoreCase("lvlname"))
 			{
 				lvlPic = contents.get(elem);
 			}
@@ -54,18 +57,18 @@ public class LevelLoader
 				}
 				catch (NumberFormatException ex)
 				{
-					throw new LevelFormatException();
+					throw new LevelFormatException(lineCount);
 				}
 			}
 			else if (elem.equalsIgnoreCase("spawnrate"))
 			{
 				try
 				{
-					carRatio = Long.parseLong(contents.get(elem));
+					carRatio = Float.parseFloat(contents.get(elem));
 				}
 				catch (NumberFormatException ex)
 				{
-					throw new LevelFormatException();
+					throw new LevelFormatException(lineCount);
 				}
 			}
 			else if (elem.equalsIgnoreCase("streetcount"))
@@ -76,7 +79,7 @@ public class LevelLoader
 				}
 				catch (NumberFormatException ex)
 				{
-					throw new LevelFormatException();
+					throw new LevelFormatException(lineCount);
 				}
 			}
 			else if (elem.startsWith("stopline"))
@@ -95,10 +98,15 @@ public class LevelLoader
 			}
 			else
 			{
-				throw new LevelFormatException();
+				throw new LevelFormatException(lineCount);
 			}
 		}
 		
-		return null;
+		Street[] streets = new Street[4];
+		streets[0] = new Street(null, 0, 0, null, null);
+		streets[1] = new Street(null, 0, 0, null, null);
+		streets[2] = new Street(null, 0, 0, null, null);
+		streets[3] = new Street(null, 0, 0, null, null);
+		return new Level(streets, 0, 0.0F);
 	}
 }

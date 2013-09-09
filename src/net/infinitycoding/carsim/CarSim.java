@@ -40,6 +40,8 @@ public class CarSim
 		catch (LevelFormatException ex)
 		{
 			JOptionPane.showMessageDialog(null, ex.getMessage(), "Leveldatei-Fehler", JOptionPane.ERROR_MESSAGE);
+			ex.printStackTrace();
+			System.exit(-1);
 		}
 		
 		/**while(this.run)
