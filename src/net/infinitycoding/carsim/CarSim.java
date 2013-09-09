@@ -1,5 +1,6 @@
 package net.infinitycoding.carsim;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -12,7 +13,7 @@ import net.infinitycoding.carsim.util.CarGenerator;
 
 public class CarSim
 {
-	private boolean run = false;
+	private boolean run = true;
 	private ArrayList<Car> cars = new ArrayList<Car>();
 	private CarGenerator generator;
 	private UserInterface userInterface;
@@ -20,10 +21,15 @@ public class CarSim
 
 	public static void main(String[] args)
 	{
-		new CarSim().start();
+		try {
+			new CarSim().start();
+		} catch (IOException e) {
+			System.out.println("IOFehler");
+			e.printStackTrace();
+		}
 	}
 	
-	public void start()
+	public void start() throws IOException
 	{
 		long beforeTime = 0;
 		long afterTime = 0;
@@ -35,14 +41,14 @@ public class CarSim
 		
 		try
 		{
-			LevelLoader.loadLevel("res/test.lvl");
+			this.level = LevelLoader.loadLevel("res/test.lvl");
 		}
 		catch (LevelFormatException ex)
 		{
 			JOptionPane.showMessageDialog(null, ex.getMessage(), "Leveldatei-Fehler", JOptionPane.ERROR_MESSAGE);
 		}
 		
-		/**while(this.run)
+		while(this.run)
 		{
 			//Hauptschleife
 			difTime = afterTime - beforeTime;
@@ -50,11 +56,11 @@ public class CarSim
 			
 			this.cars.add(this.generator.genNewCars(this.cars,this.level));
 			this.moveCars(difTime);
-			this.userInterface.drawCars();
+			this.userInterface.drawCars(this.cars);
 			this.userInterface.checkCollision();
 			
 			afterTime = System.currentTimeMillis();
-		}**/
+		}
 	}
 	
 

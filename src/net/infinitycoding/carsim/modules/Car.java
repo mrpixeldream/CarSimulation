@@ -1,17 +1,26 @@
 package net.infinitycoding.carsim.modules;
 
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import net.infinitycoding.carsim.CarSim;
 
 public class Car
 {
 	public Rectangle collisionBox = new Rectangle();
 	public boolean isDriving = true;
 	public int direction;
-	public int x;
-	public int y;
+	public int x = 0;
+	public int y = 0;
+	private int streetNum;
+	public Image bild;
 	
-	public Car(int streetNum)
+	public Car(int streetNum) throws IOException
 	{
-		
+		this.streetNum = streetNum;
+		this.bild = ImageIO.read(CarSim.class.getResource("res/auto.png"));
 	}
 }
