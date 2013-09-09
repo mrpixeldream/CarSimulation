@@ -1,6 +1,5 @@
 package net.infinitycoding.carsim.modules.io;
 
-import net.infinitycoding.carsim.modules.Level;
 
 public class LevelTest
 {
