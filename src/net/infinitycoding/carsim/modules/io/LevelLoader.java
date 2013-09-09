@@ -2,8 +2,8 @@ package net.infinitycoding.carsim.modules.io;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 import net.infinitycoding.carsim.CarSim;
 import net.infinitycoding.carsim.exceptions.LevelFormatException;
@@ -15,9 +15,9 @@ public class LevelLoader
 	static int maxCars;
 	static long carRatio;
 	static int streetCount;
-	static HashMap<Integer, Integer> stopLineCoords;
+	static HashMap<Integer, Integer> stopLineCoords = new HashMap<Integer, Integer>();
 	static ArrayList<Integer> carSpawns;
-	static HashMap<Integer, Integer> trafficLightCoords;
+	static HashMap<Integer, Integer> trafficLightCoords = new HashMap<Integer, Integer>();
 	
 	public static Level loadLevel(String lvlFileName) throws LevelFormatException
 	{
@@ -27,7 +27,7 @@ public class LevelLoader
 		while (scr.hasNext())
 		{
 			String line = scr.nextLine();
-			System.out.println("Line: " + line);
+			//System.out.println("Line: " + line);
 			String key = line.split("=")[0];
 			String val = line.split("=")[1];
 			contents.put(key, val);
@@ -38,7 +38,7 @@ public class LevelLoader
 			//System.out.println("------------------");
 		}
 		
-		HashSet<String> keys = (HashSet<String>) contents.keySet();
+		Set<String> keys = contents.keySet();
 		
 		for (String elem : keys)
 		{
