@@ -1,8 +1,11 @@
 package net.infinitycoding.carsim;
 
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
+
+import net.infinitycoding.carsim.modules.Car;
 
 public class UserInterface extends JFrame
 {	
@@ -30,9 +33,13 @@ public class UserInterface extends JFrame
 		// TODO Auto-generated method stub
 	}
 
-	public void drawCars()
+	public void drawCars(ArrayList<Car> cars)
 	{
-		// TODO Auto-generated method stub
+		for(Car car : (Car[]) cars.toArray())
+		{
+			
+			this.canvas.getGraphics().drawImage(car.bild, car.x, car.y, car.x+128, car.y, car.x, car.y+114, car.x+128, car.y+114, null);
+		}
 	}
 	
 }
