@@ -118,7 +118,7 @@ public class LevelLoader
 			int y = stopLineCoords.get(x);
 			
 			int tfX = trafficIterator.next();
-			int tfY = trafficLightCoords.get(x);
+			int tfY = trafficLightCoords.get(tfX);
 			streets[i] = new Street(new Rectangle(x, y, 0, 0), x, y, new TrafficLight(tfX, tfY));
 		}
 		
