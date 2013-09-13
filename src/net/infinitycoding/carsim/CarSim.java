@@ -35,7 +35,7 @@ public class CarSim
 		long afterTime = 0;
 		long difTime = 0;
 		
-		userInterface = new UserInterface();
+		userInterface = new UserInterface(level.streetPic);
 		
 		generator = new CarGenerator();
 		

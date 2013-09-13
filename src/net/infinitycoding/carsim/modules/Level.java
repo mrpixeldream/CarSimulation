@@ -16,7 +16,7 @@ public class Level
 	public float CAR_RATIO = 0F;
 	public int streetcount = 0;
 	
-	ImageIcon streetPic;
+	public ImageIcon streetPic;
 	
 	public Level(Street[] streets, int maxCars, float carRatio, String imgName)
 	{

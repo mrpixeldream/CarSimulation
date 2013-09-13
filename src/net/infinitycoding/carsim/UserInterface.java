@@ -3,6 +3,7 @@ package net.infinitycoding.carsim;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import net.infinitycoding.carsim.modules.Car;
@@ -11,7 +12,7 @@ public class UserInterface extends JFrame
 {	
 	Canvas canvas;
 	
-	public UserInterface()
+	public UserInterface(ImageIcon background)
 	{
 		super();
 		
@@ -22,7 +23,7 @@ public class UserInterface extends JFrame
 		this.setTitle("CarSimulator by InfinityCoding");
 		this.setLayout(new GridLayout(1, 1));
 		
-		this.canvas = new Canvas(1280, 1024);
+		this.canvas = new Canvas(1280, 1024, background);
 		this.add(canvas);
 		
 		this.setVisible(true);
