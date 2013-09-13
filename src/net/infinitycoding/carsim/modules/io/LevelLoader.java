@@ -1,7 +1,8 @@
 package net.infinitycoding.carsim.modules.io;
 
-import java.util.ArrayList;
+import java.awt.Rectangle;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -9,6 +10,7 @@ import net.infinitycoding.carsim.CarSim;
 import net.infinitycoding.carsim.exceptions.LevelFormatException;
 import net.infinitycoding.carsim.modules.Level;
 import net.infinitycoding.carsim.modules.Street;
+import net.infinitycoding.carsim.modules.TrafficLight;
 
 public class LevelLoader
 {	
@@ -94,7 +96,7 @@ public class LevelLoader
 				int y = Integer.parseInt(contents.get(elem).split(",")[1]);
 				carSpawns.put(x, y);
 			}
-			else if (elem.equalsIgnoreCase(""))
+			else if (elem.startsWith("traffic"))
 			{
 				int x = Integer.parseInt(contents.get(elem).split(",")[0]);
 				int y = Integer.parseInt(contents.get(elem).split(",")[1]);
@@ -106,11 +108,20 @@ public class LevelLoader
 			}
 		}
 		
-		Street[] streets = new Street[4];
-		streets[0] = new Street(null, 0, 0, null, null);
-		streets[1] = new Street(null, 0, 0, null, null);
-		streets[2] = new Street(null, 0, 0, null, null);
-		streets[3] = new Street(null, 0, 0, null, null);
-		return new Level(streets, 0, 0.0F);
+		Street[] streets = new Street[stopLineCoords.size()];
+		Iterator<Integer> stopIterator = stopLineCoords.keySet().iterator();
+		Iterator<Integer> trafficIterator = trafficLightCoords.keySet().iterator();
+		
+		for (int i = 0; i < stopLineCoords.size(); i++)
+		{
+			int x = stopIterator.next();
+			int y = stopLineCoords.get(x);
+			
+			int tfX = trafficIterator.next();
+			int tfY = trafficLightCoords.get(x);
+			streets[i] = new Street(new Rectangle(x, y, 0, 0), x, y, new TrafficLight(tfX, tfY));
+		}
+		
+		return new Level(streets, maxCars, carRatio, lvlPic);
 	}
 }

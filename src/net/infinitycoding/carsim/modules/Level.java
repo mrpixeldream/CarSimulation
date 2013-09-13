@@ -2,6 +2,10 @@ package net.infinitycoding.carsim.modules;
 
 import java.util.HashMap;
 
+import javax.swing.ImageIcon;
+
+import net.infinitycoding.carsim.CarSim;
+
 public class Level
 {
 	HashMap<Integer, Street> streets = new HashMap<Integer, Street>();
@@ -12,7 +16,9 @@ public class Level
 	public float CAR_RATIO = 0F;
 	public int streetcount = 0;
 	
-	public Level(Street[] streets, int maxCars, float carRatio)
+	ImageIcon streetPic;
+	
+	public Level(Street[] streets, int maxCars, float carRatio, String imgName)
 	{
 		int streetNumIndex = 0;
 		streetcount = streets.length;
@@ -22,5 +28,6 @@ public class Level
 			this.streets.put(streetNumIndex, elem);
 			streetNumIndex++;
 		}
+		this.streetPic = new ImageIcon(CarSim.class.getResource("res/" + imgName));
 	}
 }
