@@ -1,5 +1,6 @@
 package net.infinitycoding.carsim;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
@@ -22,6 +23,7 @@ public class UserInterface extends JFrame
 		this.setResizable(false);
 		this.setTitle("CarSimulator by InfinityCoding");
 		this.setLayout(new GridLayout(1, 1));
+		this.setBackground(Color.WHITE);
 		
 		this.canvas = new Canvas(1280, 1024, background);
 		this.add(canvas);

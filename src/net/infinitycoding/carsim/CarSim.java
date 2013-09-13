@@ -35,8 +35,6 @@ public class CarSim
 		long afterTime = 0;
 		long difTime = 0;
 		
-		userInterface = new UserInterface(level.streetPic);
-		
 		generator = new CarGenerator();
 		
 		try
@@ -49,6 +47,8 @@ public class CarSim
 			ex.printStackTrace();
 			System.exit(-1);
 		}
+		
+		userInterface = new UserInterface(level.streetPic);
 		
 		while(this.run)
 		{
