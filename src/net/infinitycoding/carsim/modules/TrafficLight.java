@@ -2,7 +2,7 @@ package net.infinitycoding.carsim.modules;
 
 public class TrafficLight
 {
-	private boolean isOn;
+	private boolean isOn = false;
 	public int x;
 	public int y;
 	
