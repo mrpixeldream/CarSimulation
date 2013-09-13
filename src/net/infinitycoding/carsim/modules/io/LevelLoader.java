@@ -17,7 +17,7 @@ public class LevelLoader
 	static float carRatio;
 	static int streetCount;
 	static HashMap<Integer, Integer> stopLineCoords = new HashMap<Integer, Integer>();
-	static ArrayList<Integer> carSpawns;
+	static HashMap<Integer, Integer> carSpawns = new HashMap<Integer, Integer>();
 	static HashMap<Integer, Integer> trafficLightCoords = new HashMap<Integer, Integer>();
 	
 	public static Level loadLevel(String lvlFileName) throws LevelFormatException
@@ -88,13 +88,17 @@ public class LevelLoader
 				int y = Integer.parseInt(contents.get(elem).split(",")[1]);
 				stopLineCoords.put(x, y);
 			}
-			else if (elem.equalsIgnoreCase(""))
+			else if (elem.startsWith("spawn"))
 			{
-				
+				int x = Integer.parseInt(contents.get(elem).split(",")[0]);
+				int y = Integer.parseInt(contents.get(elem).split(",")[1]);
+				carSpawns.put(x, y);
 			}
 			else if (elem.equalsIgnoreCase(""))
 			{
-				
+				int x = Integer.parseInt(contents.get(elem).split(",")[0]);
+				int y = Integer.parseInt(contents.get(elem).split(",")[1]);
+				trafficLightCoords.put(x, y);
 			}
 			else
 			{
