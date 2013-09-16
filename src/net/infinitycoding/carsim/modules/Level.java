@@ -23,6 +23,9 @@ public class Level
 		int streetNumIndex = 0;
 		streetcount = streets.length;
 		
+		this.MAX_CARS = maxCars;
+		this.CAR_RATIO = carRatio;
+		
 		for (Street elem : streets)
 		{
 			this.streets.put(streetNumIndex, elem);
