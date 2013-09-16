@@ -35,8 +35,6 @@ public class CarSim
 		long afterTime = 0;
 		long difTime = 0;
 		
-		userInterface = new UserInterface(level.streetPic);
-		
 		generator = new CarGenerator();
 		
 		try
@@ -50,6 +48,8 @@ public class CarSim
 			System.exit(-1);
 		}
 		
+		userInterface = new UserInterface(level.streetPic);
+		
 		while(this.run)
 		{
 			//Hauptschleife
@@ -58,6 +58,7 @@ public class CarSim
 			Car temp = this.generator.genNewCars(this.cars,this.level);
 			if(temp != null)
 			{
+				
 				this.cars.add(temp);
 			}
 			this.moveCars(difTime);
@@ -72,7 +73,7 @@ public class CarSim
 	private void moveCars(long difTime)
 	{
 		boolean collision;
-		for(Car car : (Car[]) cars.toArray())
+		for(Car car : cars)
 		{
 			collision = false;
 			if(car.isDriving)

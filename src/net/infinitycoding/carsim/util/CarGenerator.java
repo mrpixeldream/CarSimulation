@@ -13,10 +13,10 @@ public class CarGenerator
 	{
 		if(cars.size() <= level.MAX_CARS)
 		{
-			System.out.println("new Car");
 			double zahl = Math.random();
 			if(zahl <= level.CAR_RATIO)
 			{
+				System.out.println("new Car");
 				int strasse = (int) (Math.random() * level.streetcount);
 				Car neu = new Car(strasse);
 				return neu;

@@ -36,7 +36,7 @@ public class UserInterface extends JFrame
 
 	public void drawCars(ArrayList<Car> cars)
 	{
-		for(Car car : (Car[]) cars.toArray())
+		for(Car car : cars)
 		{
 			
 			this.canvas.getGraphics().drawImage(car.bild, car.x, car.y, car.x+128, car.y, car.x, car.y+114, car.x+128, car.y+114, null);
