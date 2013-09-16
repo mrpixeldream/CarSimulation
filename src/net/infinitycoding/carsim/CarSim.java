@@ -78,7 +78,7 @@ public class CarSim
 			collision = false;
 			if(car.isDriving)
 			{				
-				for(Car other_car : (Car[]) cars.toArray())
+				for(Car other_car : cars)
 				{
 					if(car.collisionBox.intersects(other_car.collisionBox))
 					{
