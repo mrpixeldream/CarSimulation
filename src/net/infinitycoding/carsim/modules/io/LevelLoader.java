@@ -67,6 +67,7 @@ public class LevelLoader
 				try
 				{
 					carRatio = Float.parseFloat(contents.get(elem));
+					System.out.println(carRatio);
 				}
 				catch (NumberFormatException ex)
 				{
