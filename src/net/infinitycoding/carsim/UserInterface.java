@@ -1,6 +1,7 @@
 package net.infinitycoding.carsim;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
@@ -26,7 +27,7 @@ public class UserInterface extends JFrame
 		this.setBackground(Color.WHITE);
 		
 		this.canvas = new Canvas(1280, 1024, background);
-		this.add(canvas);
+		this.setContentPane(canvas);
 		
 		this.setVisible(true);
 	}
@@ -40,8 +41,8 @@ public class UserInterface extends JFrame
 	{
 		for(Car car : cars)
 		{
-			
-			this.canvas.getGraphics().drawImage(car.bild, car.x, car.y, car.x+128, car.y, car.x, car.y+114, car.x+128, car.y+114, null);
+			System.out.println("Drawing a car");
+			this.canvas.getGraphics().drawImage(car.picture, car.x, car.y, null);
 		}
 	}
 	

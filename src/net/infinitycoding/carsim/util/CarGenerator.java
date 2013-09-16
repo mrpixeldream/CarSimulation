@@ -11,7 +11,7 @@ public class CarGenerator
 
 	public Car genNewCars(ArrayList<Car> cars, Level level) throws IOException
 	{
-		if(cars.size() <= level.MAX_CARS)
+		if(cars.size() < level.MAX_CARS)
 		{
 			double zahl = Math.random();
 			if(zahl <= level.CAR_RATIO)
