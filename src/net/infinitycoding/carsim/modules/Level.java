@@ -8,7 +8,7 @@ import net.infinitycoding.carsim.CarSim;
 
 public class Level
 {
-	HashMap<Integer, Street> streets = new HashMap<Integer, Street>();
+	public HashMap<Integer, Street> streets = new HashMap<Integer, Street>();
 	
 	public int carCount  = 0;
 	

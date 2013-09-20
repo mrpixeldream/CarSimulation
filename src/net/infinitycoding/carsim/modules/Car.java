@@ -15,7 +15,7 @@ public class Car
 	public int direction;
 	public int x = 0;
 	public int y = 0;
-	private int streetNum;
+	public int streetNum;
 	public Image picture;
 	
 	public Car(int streetNum) throws IOException

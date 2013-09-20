@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 public class Street
 {
 	Rectangle stopLine;
-	int startX, startY;
+	public int startX, startY;
 	TrafficLight trafficLight;
 	ImageIcon streetPic;
 	

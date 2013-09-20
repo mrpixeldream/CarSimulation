@@ -41,7 +41,6 @@ public class UserInterface extends JFrame
 	{
 		for(Car car : cars)
 		{
-			System.out.println("Drawing a car");
 			this.canvas.getGraphics().drawImage(car.picture, car.x, car.y, null);
 		}
 	}
