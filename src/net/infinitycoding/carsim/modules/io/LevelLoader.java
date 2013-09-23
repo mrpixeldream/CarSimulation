@@ -111,6 +111,7 @@ public class LevelLoader
 		Street[] streets = new Street[stopLineCoords.size()];
 		Iterator<Integer> stopIterator = stopLineCoords.keySet().iterator();
 		Iterator<Integer> trafficIterator = trafficLightCoords.keySet().iterator();
+		Iterator<Integer> spawnIterator = carSpawns.keySet().iterator();
 		
 		for (int i = 0; i < stopLineCoords.size(); i++)
 		{
@@ -119,7 +120,11 @@ public class LevelLoader
 			
 			int tfX = trafficIterator.next();
 			int tfY = trafficLightCoords.get(tfX);
-			streets[i] = new Street(new Rectangle(x, y, 0, 0), x, y, new TrafficLight(tfX, tfY));
+			
+			int sX = spawnIterator.next();
+			int sY = carSpawns.get(sX);
+			
+			streets[i] = new Street(new Rectangle(x, y, 0, 0), sX, sY, new TrafficLight(tfX, tfY));
 		}
 		
 		return new Level(streets, maxCars, carRatio, lvlPic);

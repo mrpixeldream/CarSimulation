@@ -17,6 +17,5 @@ public class Street
 		this.startX = startX;
 		this.startY = startY;
 		this.trafficLight = trafficLight;
-		
 	}
 }
