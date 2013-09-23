@@ -63,6 +63,7 @@ public class CarSim
 			}
 			this.moveCars(difTime);
 			this.userInterface.drawCars(this.cars);
+			this.userInterface.drawLights(this.level.streets);
 			this.userInterface.checkCollision();
 			
 			afterTime = System.currentTimeMillis();

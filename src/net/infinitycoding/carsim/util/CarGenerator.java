@@ -21,7 +21,7 @@ public class CarGenerator
 				Car neu = new Car(strasse);
 				int street = (int) (Math.random() * (level.streetcount - 1));
 				neu.x = level.streets.get(street).startX;
-				System.out.println(level.streets.get(street).startY);
+				System.out.println(level.streets.get(street).startX);
 				neu.y = level.streets.get(street).startY;
 				neu.streetNum = street;
 				return neu;

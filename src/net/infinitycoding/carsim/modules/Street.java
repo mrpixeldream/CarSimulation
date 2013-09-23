@@ -6,10 +6,10 @@ import javax.swing.ImageIcon;
 
 public class Street
 {
-	Rectangle stopLine;
+	public Rectangle stopLine;
 	public int startX, startY;
-	TrafficLight trafficLight;
-	ImageIcon streetPic;
+	public TrafficLight trafficLight;
+	public ImageIcon streetPic;
 	
 	public Street(Rectangle stopLine, int startX, int startY, TrafficLight trafficLight)
 	{
