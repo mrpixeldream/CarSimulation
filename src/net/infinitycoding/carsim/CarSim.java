@@ -53,6 +53,11 @@ public class CarSim
 		while(this.run)
 		{
 			//Hauptschleife
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			difTime = afterTime - beforeTime;
 			beforeTime = System.currentTimeMillis();
 			Car temp = this.generator.genNewCars(this.cars,this.level);
