@@ -114,9 +114,9 @@ public class CarSim
 		}
 	}
 
-	private void gameOver() {
-		System.out.println("Gameover!!!");
-		
+	private void gameOver()
+	{
+		JOptionPane.showMessageDialog(null, "Game over!", "Game over!", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	public boolean isRunning()
