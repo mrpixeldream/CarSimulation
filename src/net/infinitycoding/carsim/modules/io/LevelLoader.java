@@ -1,6 +1,7 @@
 package net.infinitycoding.carsim.modules.io;
 
 import java.awt.Rectangle;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -22,7 +23,7 @@ public class LevelLoader
 	static HashMap<Integer, Integer> carSpawns = new HashMap<Integer, Integer>();
 	static HashMap<Integer, Integer> trafficLightCoords = new HashMap<Integer, Integer>();
 	
-	public static Level loadLevel(String lvlFileName) throws LevelFormatException
+	public static Level loadLevel(String lvlFileName) throws LevelFormatException, IOException
 	{
 		HashMap<String, String> contents = new HashMap<String, String>();
 		Scanner scr = new Scanner(CarSim.class.getResourceAsStream(lvlFileName));

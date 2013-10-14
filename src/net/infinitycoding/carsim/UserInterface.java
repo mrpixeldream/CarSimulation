@@ -4,11 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import net.infinitycoding.carsim.modules.Car;
+import net.infinitycoding.carsim.modules.Street;
 
 public class UserInterface extends JFrame
 {	
@@ -42,7 +44,24 @@ public class UserInterface extends JFrame
 		for(Car car : cars)
 		{
 			this.canvas.getGraphics().drawImage(car.picture, car.x, car.y, null);
+			System.out.println("Test");
 		}
+	}
+
+	public void drawLights(HashMap<Integer, Street> streets) {
+		for(Integer street : streets.keySet())
+		{
+			if(streets.get(street).trafficLight.getOn())
+			{
+				this.canvas.getGraphics().drawImage(streets.get(street).trafficLight.greenLight,streets.get(street).trafficLight.x,streets.get(street).trafficLight.y,null);
+			}
+			else
+			{
+				this.canvas.getGraphics().drawImage(streets.get(street).trafficLight.redLight,streets.get(street).trafficLight.x,streets.get(street).trafficLight.y,null);
+			}
+			
+		}
+		
 	}
 	
 }
