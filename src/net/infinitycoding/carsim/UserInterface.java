@@ -16,7 +16,7 @@ public class UserInterface extends JFrame
 {	
 	Canvas canvas;
 	
-	public UserInterface(ImageIcon background)
+	public UserInterface(ImageIcon background, CarSim carSim)
 	{
 		super();
 		
@@ -28,8 +28,9 @@ public class UserInterface extends JFrame
 		this.setLayout(new GridLayout(1, 1));
 		this.setBackground(Color.WHITE);
 		
-		this.canvas = new Canvas(1280, 1024, background);
+		this.canvas = new Canvas(1280, 1024, background,carSim);
 		this.setContentPane(canvas);
+		
 		
 		this.setVisible(true);
 	}

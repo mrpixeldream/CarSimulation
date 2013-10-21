@@ -48,7 +48,7 @@ public class CarSim
 			System.exit(-1);
 		}
 		
-		userInterface = new UserInterface(level.streetPic);
+		userInterface = new UserInterface(level.streetPic,this);
 		
 		while(this.run)
 		{
@@ -100,6 +100,7 @@ public class CarSim
 				}
 				if(!collision)
 				{
+					System.out.println("Test");
 					switch(car.direction)
 					{
 						case 1:
@@ -116,6 +117,13 @@ public class CarSim
 							break;
 						}
 				}
+			}
+		}
+	}
+	public void onClick(int x, int y){
+		for(Integer nummer : this.level.streets.keySet()){
+			if(this.level.streets.get(nummer).trafficLight.box.contains(x, y)){
+				this.level.streets.get(nummer).trafficLight.changeLight();
 			}
 		}
 	}
