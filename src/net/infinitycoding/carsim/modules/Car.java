@@ -1,7 +1,7 @@
 package net.infinitycoding.carsim.modules;
 
-import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -16,7 +16,7 @@ public class Car
 	public int x = 0;
 	public int y = 0;
 	public int streetNum;
-	public Image picture;
+	public BufferedImage picture;
 	
 	public Car(int streetNum) throws IOException
 	{

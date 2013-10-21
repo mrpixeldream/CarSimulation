@@ -1,7 +1,7 @@
 package net.infinitycoding.carsim;
 
 import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import net.infinitycoding.carsim.modules.Car;
+import net.infinitycoding.carsim.modules.Level;
 import net.infinitycoding.carsim.modules.Street;
 
 public class UserInterface extends JFrame
@@ -39,11 +40,11 @@ public class UserInterface extends JFrame
 		// TODO Auto-generated method stub
 	}
 
-	public void drawCars(ArrayList<Car> cars)
+	public void drawCars(ArrayList<Car> cars, Level lvl)
 	{
 		for(Car car : cars)
 		{
-			this.canvas.getGraphics().drawImage(car.picture, car.x, car.y, null);
+			Graphics2D g2d = (Graphics2D) this.canvas.getGraphics();
 		}
 	}
 

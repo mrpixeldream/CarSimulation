@@ -1,6 +1,7 @@
 package net.infinitycoding.carsim.modules;
 
 import java.awt.Rectangle;
+import java.awt.geom.AffineTransform;
 
 import javax.swing.ImageIcon;
 
@@ -10,12 +11,15 @@ public class Street
 	public int startX, startY;
 	public TrafficLight trafficLight;
 	public ImageIcon streetPic;
+	public AffineTransform transform;
 	
-	public Street(Rectangle stopLine, int startX, int startY, TrafficLight trafficLight)
+	public Street(Rectangle stopLine, int startX, int startY, TrafficLight trafficLight, int rotation)
 	{
 		this.stopLine = stopLine;
 		this.startX = startX;
 		this.startY = startY;
 		this.trafficLight = trafficLight;
+		this.transform = AffineTransform.getRotateInstance(rotation);
+		System.err.println("ROTATION: " + rotation);
 	}
 }

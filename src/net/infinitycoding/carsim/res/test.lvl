@@ -14,3 +14,7 @@ traffic0=400,250
 traffic1=825,250
 traffic2=401,675
 traffic3=826,675
+rotate0=0
+rotate1=270
+rotate2=180
+rotate3=90

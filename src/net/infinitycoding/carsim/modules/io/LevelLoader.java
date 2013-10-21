@@ -2,6 +2,7 @@ package net.infinitycoding.carsim.modules.io;
 
 import java.awt.Rectangle;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -22,6 +23,7 @@ public class LevelLoader
 	static HashMap<Integer, Integer> stopLineCoords = new HashMap<Integer, Integer>();
 	static HashMap<Integer, Integer> carSpawns = new HashMap<Integer, Integer>();
 	static HashMap<Integer, Integer> trafficLightCoords = new HashMap<Integer, Integer>();
+	static ArrayList<Integer> rotations = new ArrayList<Integer>();
 	
 	public static Level loadLevel(String lvlFileName) throws LevelFormatException, IOException
 	{
@@ -103,6 +105,10 @@ public class LevelLoader
 				int y = Integer.parseInt(contents.get(elem).split(",")[1]);
 				trafficLightCoords.put(x, y);
 			}
+			else if (elem.startsWith("rotate"))
+			{
+				rotations.add(Integer.parseInt(contents.get(elem)));
+			}
 			else
 			{
 				throw new LevelFormatException(lineCount);
@@ -125,7 +131,7 @@ public class LevelLoader
 			int sX = spawnIterator.next();
 			int sY = carSpawns.get(sX);
 			
-			streets[i] = new Street(new Rectangle(x, y, 0, 0), sX, sY, new TrafficLight(tfX, tfY));
+			streets[i] = new Street(new Rectangle(x, y, 0, 0), sX, sY, new TrafficLight(tfX, tfY), rotations.get(i));
 		}
 		
 		return new Level(streets, maxCars, carRatio, lvlPic);

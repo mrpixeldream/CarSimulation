@@ -53,7 +53,7 @@ public class CarSim
 		while(this.run)
 		{
 			//Hauptschleife
-			try {
+			try{
 				Thread.sleep(10);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -67,7 +67,7 @@ public class CarSim
 				this.cars.add(temp);
 			}
 			this.moveCars(difTime);
-			this.userInterface.drawCars(this.cars);
+			this.userInterface.drawCars(this.cars, this.level);
 			this.userInterface.drawLights(this.level.streets);
 			this.userInterface.checkCollision();
 			
