@@ -12,6 +12,7 @@ public class Street
 	public TrafficLight trafficLight;
 	public ImageIcon streetPic;
 	public AffineTransform transform;
+	public int rotatioAngel ;
 	
 	public Street(Rectangle stopLine, int startX, int startY, TrafficLight trafficLight, int rotation)
 	{
@@ -20,6 +21,7 @@ public class Street
 		this.startY = startY;
 		this.trafficLight = trafficLight;
 		this.transform = AffineTransform.getRotateInstance(rotation);
+		this.rotatioAngel = rotation;
 		System.err.println("ROTATION: " + rotation);
 	}
 }

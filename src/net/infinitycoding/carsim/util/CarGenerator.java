@@ -21,6 +21,21 @@ public class CarGenerator
 				neu.x = level.streets.get(street).startX;
 				neu.y = level.streets.get(street).startY;
 				neu.streetNum = street;
+				switch(level.streets.get(street).rotatioAngel)
+				{
+					case 180:
+						neu.direction = 1;
+						break;
+					case 270:
+						neu.direction = 4;
+						break;
+					case 0:
+						neu.direction = 3;
+						break;
+					case 90:
+						neu.direction = 2;
+						break;
+				}
 				return neu;
 			}
 		}
