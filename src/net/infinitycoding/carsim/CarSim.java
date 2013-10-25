@@ -21,9 +21,12 @@ public class CarSim
 
 	public static void main(String[] args)
 	{
-		try {
+		try
+		{
 			new CarSim().start();
-		} catch (IOException e) {
+		}
+		catch (IOException e)
+		{
 			System.out.println("IOFehler");
 			e.printStackTrace();
 		}
@@ -52,12 +55,6 @@ public class CarSim
 		
 		while(this.run)
 		{
-			//Hauptschleife
-			try{
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 			difTime = afterTime - beforeTime;
 			beforeTime = System.currentTimeMillis();
 			Car temp = this.generator.genNewCars(this.cars,this.level);
@@ -67,7 +64,7 @@ public class CarSim
 				this.cars.add(temp);
 			}
 			this.moveCars(difTime);
-			this.userInterface.drawCars(this.cars, this.level);
+			this.userInterface.drawCars(this.cars);
 			this.userInterface.drawLights(this.level.streets);
 			this.userInterface.checkCollision();
 			
@@ -75,7 +72,6 @@ public class CarSim
 		}
 	}
 	
-
 	private void moveCars(long difTime)
 	{
 		boolean collision;
@@ -120,9 +116,12 @@ public class CarSim
 			}
 		}
 	}
-	public void onClick(int x, int y){
-		for(Integer nummer : this.level.streets.keySet()){
-			if(this.level.streets.get(nummer).trafficLight.box.contains(x, y)){
+	public void onClick(int x, int y)
+	{
+		for(Integer nummer : this.level.streets.keySet())
+		{
+			if(this.level.streets.get(nummer).trafficLight.box.contains(x, y))
+			{
 				this.level.streets.get(nummer).trafficLight.changeLight();
 			}
 		}
