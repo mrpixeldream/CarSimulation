@@ -3,6 +3,8 @@ package net.infinitycoding.carsim;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -41,11 +43,11 @@ public class UserInterface extends JFrame
 		// TODO Auto-generated method stub
 	}
 
-	public void drawCars(ArrayList<Car> cars, Level lvl)
+	public void drawCars(ArrayList<Car> cars)
 	{
-		for(Car car : cars)
+		for(Car elem : cars)
 		{
-			Graphics2D g2d = (Graphics2D) this.canvas.getGraphics();
+			canvas.getGraphics().drawImage(elem.picture, elem.x, elem.y, null);
 		}
 	}
 
