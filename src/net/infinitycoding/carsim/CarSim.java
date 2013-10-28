@@ -96,7 +96,6 @@ public class CarSim
 				}
 				if(!collision)
 				{
-					System.out.println("Test");
 					switch(car.direction)
 					{
 						case 1:
