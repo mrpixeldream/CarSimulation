@@ -35,7 +35,7 @@ public class MyCanvas extends Canvas
 //		bgImg.setBounds(0, 0, width, height);
 //		bgImg.setBorder(null);
 		
-//		this.add(bgImg);
+//		this.add(bgImg);f
 		this.setVisible(true);
 		  
 		this.addMouseListener(new MouseAdapter(){
