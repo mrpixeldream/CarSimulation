@@ -3,12 +3,8 @@ package net.infinitycoding.carsim;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,7 +12,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import net.infinitycoding.carsim.modules.Car;
-import net.infinitycoding.carsim.modules.Level;
 import net.infinitycoding.carsim.modules.Street;
 
 public class UserInterface extends JFrame
@@ -60,6 +55,9 @@ public class UserInterface extends JFrame
 		for(Car elem : cars)
 		{
 			this.offgc.drawImage(elem.picture, elem.x, elem.y, null);
+			canvas.getGraphics().drawImage(elem.picture, elem.x, elem.y, null);
+			canvas.repaint();
+			this.graphic.drawImage(elem.picture, elem.x, elem.y, null);
 		}
 	}
 
