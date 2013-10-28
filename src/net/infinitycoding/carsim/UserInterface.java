@@ -1,6 +1,7 @@
 package net.infinitycoding.carsim;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.geom.AffineTransform;
@@ -18,10 +19,14 @@ import net.infinitycoding.carsim.modules.Street;
 public class UserInterface extends JFrame
 {	
 	Canvas canvas;
+	private ImageIcon background;
+	private Graphics graphic;
 	
 	public UserInterface(ImageIcon background, CarSim carSim)
 	{
 		super();
+		
+		this.background = background;
 		
 		this.setBounds(0, 0, 1280, 1024);
 		
@@ -33,9 +38,14 @@ public class UserInterface extends JFrame
 		
 		this.canvas = new Canvas(1280, 1024, background,carSim);
 		this.setContentPane(canvas);
-		
-		
 		this.setVisible(true);
+		
+		setIgnoreRepaint(true);
+		this.createBufferStrategy(2);
+		this.b = getBufferStrategy();
+		this.graphic = this.b.getDrawGraphics();
+		
+		
 	}
 
 	public void checkCollision()
@@ -49,6 +59,7 @@ public class UserInterface extends JFrame
 		{
 			canvas.getGraphics().drawImage(elem.picture, elem.x, elem.y, null);
 			canvas.repaint();
+			this.graphic.drawImage(elem.picture, elem.x, elem.y, null);
 		}
 	}
 
@@ -57,11 +68,11 @@ public class UserInterface extends JFrame
 		{
 			if(streets.get(street).trafficLight.getOn())
 			{
-				this.canvas.getGraphics().drawImage(streets.get(street).trafficLight.greenLight,streets.get(street).trafficLight.x,streets.get(street).trafficLight.y,null);
+				this.graphic.drawImage(streets.get(street).trafficLight.greenLight,streets.get(street).trafficLight.x,streets.get(street).trafficLight.y,null);
 			}
 			else
 			{
-				this.canvas.getGraphics().drawImage(streets.get(street).trafficLight.redLight,streets.get(street).trafficLight.x,streets.get(street).trafficLight.y,null);
+				this.graphic.drawImage(streets.get(street).trafficLight.redLight,streets.get(street).trafficLight.x,streets.get(street).trafficLight.y,null);
 			}
 			
 		}

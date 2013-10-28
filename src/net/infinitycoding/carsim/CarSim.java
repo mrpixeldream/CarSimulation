@@ -55,6 +55,12 @@ public class CarSim
 		
 		while(this.run)
 		{
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			difTime = afterTime - beforeTime;
 			beforeTime = System.currentTimeMillis();
 			Car temp = this.generator.genNewCars(this.cars,this.level);
@@ -67,6 +73,8 @@ public class CarSim
 			this.userInterface.drawCars(this.cars);
 			this.userInterface.drawLights(this.level.streets);
 			this.userInterface.checkCollision();
+			this.userInterface.b.dispose();
+			this.userInterface.b.show();
 			
 			afterTime = System.currentTimeMillis();
 		}
@@ -99,16 +107,16 @@ public class CarSim
 					switch(car.direction)
 					{
 						case 1:
-							car.y += 1;
+							car.x -= 1;
 							break;
 						case 2:
-							car.x += 1;
+							car.y-= 1;
 							break;
 						case 3:
-							car.y -= 1;
+							car.x += 1;
 							break;
 						case 4:
-							car.x -= 1;
+							car.y += 1;
 							break;
 						}
 				}
