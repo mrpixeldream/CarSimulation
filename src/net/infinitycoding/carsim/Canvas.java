@@ -15,11 +15,11 @@ public class Canvas extends JPanel
 		this.setBounds(0, 0, width, height);
 		this.setBackground(Color.WHITE);
 		
-		JLabel bgImg = new JLabel(background);
-		bgImg.setBounds(0, 0, width, height);
-		bgImg.setBorder(null);
+//		JLabel bgImg = new JLabel(background);
+//		bgImg.setBounds(0, 0, width, height);
+//		bgImg.setBorder(null);
 		
-		this.add(bgImg);
+//		this.add(bgImg);
 		this.setVisible(true);
 		
 		this.addMouseListener(new MouseAdapter(){

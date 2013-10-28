@@ -1,9 +1,11 @@
 package net.infinitycoding.carsim;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -21,8 +23,10 @@ public class UserInterface extends JFrame
 {	
 	Canvas canvas;
 	private ImageIcon background;
-	public BufferStrategy b;
 	private Graphics graphic;
+	public Dimension d;
+	private Image offscreen;
+	private Graphics offgc;
 	
 	public UserInterface(ImageIcon background, CarSim carSim)
 	{
@@ -42,10 +46,6 @@ public class UserInterface extends JFrame
 		this.setContentPane(canvas);
 		this.setVisible(true);
 		
-		setIgnoreRepaint(true);
-		this.createBufferStrategy(2);
-		this.b = getBufferStrategy();
-		this.graphic = this.b.getDrawGraphics();
 		
 		
 	}
@@ -59,7 +59,7 @@ public class UserInterface extends JFrame
 	{
 		for(Car elem : cars)
 		{
-			this.graphic.drawImage(elem.picture, elem.x, elem.y, null);
+			this.offgc.drawImage(elem.picture, elem.x, elem.y, null);
 		}
 	}
 
@@ -68,14 +68,26 @@ public class UserInterface extends JFrame
 		{
 			if(streets.get(street).trafficLight.getOn())
 			{
-				this.graphic.drawImage(streets.get(street).trafficLight.greenLight,streets.get(street).trafficLight.x,streets.get(street).trafficLight.y,null);
+				this.offgc.drawImage(streets.get(street).trafficLight.greenLight,streets.get(street).trafficLight.x,streets.get(street).trafficLight.y,null);
 			}
 			else
 			{
-				this.graphic.drawImage(streets.get(street).trafficLight.redLight,streets.get(street).trafficLight.x,streets.get(street).trafficLight.y,null);
+				this.offgc.drawImage(streets.get(street).trafficLight.redLight,streets.get(street).trafficLight.x,streets.get(street).trafficLight.y,null);
 			}
 			
 		}
+		
+	}
+
+	public void startdraw() {
+		this.offscreen = createImage(1280,1024);
+		this.offgc = offscreen.getGraphics();
+		
+	}
+
+	public void paintUpdate() {
+		this.canvas.repaint();
+		this.canvas.getGraphics().drawImage(this.offscreen, 0, 0, null);
 		
 	}
 	

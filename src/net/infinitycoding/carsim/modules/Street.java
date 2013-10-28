@@ -22,6 +22,5 @@ public class Street
 		this.trafficLight = trafficLight;
 		this.transform = AffineTransform.getRotateInstance(rotation);
 		this.rotatioAngel = rotation;
-		System.err.println("ROTATION: " + rotation);
 	}
 }

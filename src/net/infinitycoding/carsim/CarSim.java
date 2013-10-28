@@ -1,5 +1,7 @@
 package net.infinitycoding.carsim;
 
+import java.awt.Graphics;
+import java.awt.Image;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -55,12 +57,6 @@ public class CarSim
 		
 		while(this.run)
 		{
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			difTime = afterTime - beforeTime;
 			beforeTime = System.currentTimeMillis();
 			Car temp = this.generator.genNewCars(this.cars,this.level);
@@ -70,11 +66,11 @@ public class CarSim
 				this.cars.add(temp);
 			}
 			this.moveCars(difTime);
+			this.userInterface.startdraw();
 			this.userInterface.drawCars(this.cars);
 			this.userInterface.drawLights(this.level.streets);
+			this.userInterface.paintUpdate();
 			this.userInterface.checkCollision();
-			this.userInterface.b.dispose();
-			this.userInterface.b.show();
 			
 			afterTime = System.currentTimeMillis();
 		}
@@ -104,7 +100,6 @@ public class CarSim
 				}
 				if(!collision)
 				{
-					System.out.println("Test");
 					switch(car.direction)
 					{
 						case 1:
