@@ -62,14 +62,13 @@ public class CarSim
 			Car temp = this.generator.genNewCars(this.cars,this.level);
 			if(temp != null)
 			{
-				
 				this.cars.add(temp);
 			}
 			this.moveCars(difTime);
-			this.userInterface.startdraw();
+			this.userInterface.canvas.startDraw();
 			this.userInterface.drawCars(this.cars);
 			this.userInterface.drawLights(this.level.streets);
-			this.userInterface.paintUpdate();
+			this.userInterface.canvas.flip();
 			this.userInterface.checkCollision();
 			
 			afterTime = System.currentTimeMillis();

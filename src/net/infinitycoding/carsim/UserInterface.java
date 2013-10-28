@@ -10,18 +10,20 @@ import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import net.infinitycoding.carsim.modules.Car;
 import net.infinitycoding.carsim.modules.Street;
 
 public class UserInterface extends JFrame
 {	
-	Canvas canvas;
+	MyCanvas canvas;
 	private ImageIcon background;
 	private Graphics graphic;
 	public Dimension d;
 	private Image offscreen;
 	private Graphics offgc;
+	private JPanel JPanel;
 	
 	public UserInterface(ImageIcon background, CarSim carSim)
 	{
@@ -37,9 +39,16 @@ public class UserInterface extends JFrame
 		this.setLayout(new GridLayout(1, 1));
 		this.setBackground(Color.WHITE);
 		
-		this.canvas = new Canvas(1280, 1024, background,carSim);
-		this.setContentPane(canvas);
+		this.JPanel = new JPanel();
+		
+		this.canvas = new MyCanvas(1280, 1024, background,carSim);
+		
+		this.JPanel.add(this.canvas);
+		
+		this.setContentPane(this.JPanel);
 		this.setVisible(true);
+		
+		this.canvas.start();
 		
 		
 		
@@ -54,10 +63,7 @@ public class UserInterface extends JFrame
 	{
 		for(Car elem : cars)
 		{
-			this.offgc.drawImage(elem.picture, elem.x, elem.y, null);
-			canvas.getGraphics().drawImage(elem.picture, elem.x, elem.y, null);
-			canvas.repaint();
-			this.graphic.drawImage(elem.picture, elem.x, elem.y, null);
+			this.canvas.bkG.drawImage(elem.picture, elem.x, elem.y, null);
 		}
 	}
 
@@ -66,26 +72,14 @@ public class UserInterface extends JFrame
 		{
 			if(streets.get(street).trafficLight.getOn())
 			{
-				this.offgc.drawImage(streets.get(street).trafficLight.greenLight,streets.get(street).trafficLight.x,streets.get(street).trafficLight.y,null);
+				this.canvas.bkG.drawImage(streets.get(street).trafficLight.greenLight,streets.get(street).trafficLight.x,streets.get(street).trafficLight.y,null);
 			}
 			else
 			{
-				this.offgc.drawImage(streets.get(street).trafficLight.redLight,streets.get(street).trafficLight.x,streets.get(street).trafficLight.y,null);
+				this.canvas.bkG.drawImage(streets.get(street).trafficLight.redLight,streets.get(street).trafficLight.x,streets.get(street).trafficLight.y,null);
 			}
 			
 		}
-		
-	}
-
-	public void startdraw() {
-		this.offscreen = createImage(1280,1024);
-		this.offgc = offscreen.getGraphics();
-		
-	}
-
-	public void paintUpdate() {
-		this.canvas.repaint();
-		this.canvas.getGraphics().drawImage(this.offscreen, 0, 0, null);
 		
 	}
 	

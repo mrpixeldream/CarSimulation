@@ -1,24 +1,33 @@
 package net.infinitycoding.carsim;
 
+import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Paint;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferStrategy;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Canvas extends JPanel
+public class MyCanvas extends Canvas
 {
 	long delta = 0;
     long last = 0;
     long fps = 10;
+	private BufferStrategy strategy;
+	private Paint backgroundGradient;
+	public Graphics2D bkG;
 	
-	public Canvas(int width, int height, ImageIcon background, final CarSim carSim)
+	public MyCanvas(int width, int height, ImageIcon background, final CarSim carSim)
 	{
 		init();
-		this.setDoubleBuffered(true);
 		this.setBounds(0, 0, width, height);
 		this.setBackground(Color.WHITE);
 		
@@ -28,7 +37,7 @@ public class Canvas extends JPanel
 		
 //		this.add(bgImg);
 		this.setVisible(true);
-		
+		  
 		this.addMouseListener(new MouseAdapter(){
 			public void mousePressed(MouseEvent e){
 				carSim.onClick(e.getX(), e.getY());
@@ -47,6 +56,14 @@ public class Canvas extends JPanel
 	{
 		super.repaint();
 		
+		
+	}
+
+	public void flip() {
+		this.bkG.dispose();
+		strategy.show();
+		Toolkit.getDefaultToolkit().sync();
+		
 		if (last != 0)
 		{
 			delta = System.nanoTime() - last;
@@ -60,5 +77,19 @@ public class Canvas extends JPanel
 	        
 	        System.out.println(fps + " FPS");
 		}
+		
+	}
+
+
+	public void startDraw() {
+		this.bkG = (Graphics2D) strategy.getDrawGraphics(); 
+		this.bkG.fillRect(0, 0, getWidth(), getHeight());
+		
+	}
+
+	public void start() {
+		this.createBufferStrategy(2);
+		strategy = this.getBufferStrategy();
+		
 	}
 }
