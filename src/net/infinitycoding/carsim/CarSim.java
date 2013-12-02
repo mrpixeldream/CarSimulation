@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 import net.infinitycoding.carsim.exceptions.LevelFormatException;
@@ -53,7 +54,8 @@ public class CarSim
 			System.exit(-1);
 		}
 		
-		userInterface = new UserInterface(level.streetPic,this);
+		Image background = ImageIO.read(CarSim.class.getResource("res/strasse.png"));
+		userInterface = new UserInterface(background,this);
 		
 		while(this.run)
 		{

@@ -25,7 +25,7 @@ public class MyCanvas extends Canvas
 	private Paint backgroundGradient;
 	public Graphics2D bkG;
 	
-	public MyCanvas(int width, int height, ImageIcon background, final CarSim carSim)
+	public MyCanvas(int width, int height, Image background2, final CarSim carSim)
 	{
 		init();
 		this.setBounds(0, 0, width, height);

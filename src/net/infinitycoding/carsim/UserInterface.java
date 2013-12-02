@@ -18,18 +18,18 @@ import net.infinitycoding.carsim.modules.Street;
 public class UserInterface extends JFrame
 {	
 	MyCanvas canvas;
-	private ImageIcon background;
+	private Image background;
 	private Graphics graphic;
 	public Dimension d;
 	private Image offscreen;
 	private Graphics offgc;
 	private JPanel JPanel;
 	
-	public UserInterface(ImageIcon background, CarSim carSim)
+	public UserInterface(Image background2, CarSim carSim)
 	{
 		super();
 		
-		this.background = background;
+		this.background = background2;
 		
 		this.setBounds(0, 0, 1280, 1024);
 		
@@ -41,7 +41,7 @@ public class UserInterface extends JFrame
 		
 		this.JPanel = new JPanel();
 		
-		this.canvas = new MyCanvas(1280, 1024, background,carSim);
+		this.canvas = new MyCanvas(1280, 1024, background2,carSim);
 		
 		this.JPanel.add(this.canvas);
 		
@@ -61,6 +61,7 @@ public class UserInterface extends JFrame
 
 	public void drawCars(ArrayList<Car> cars)
 	{
+		this.canvas.bkG.drawImage(this.background,0,0,null);
 		for(Car elem : cars)
 		{
 			this.canvas.bkG.drawImage(elem.picture, elem.x, elem.y, null);
