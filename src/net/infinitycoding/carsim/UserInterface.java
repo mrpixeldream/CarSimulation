@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -59,11 +60,12 @@ public class UserInterface extends JFrame
 		// TODO Auto-generated method stub
 	}
 
-	public void drawCars(ArrayList<Car> cars)
+	public void drawCars(ArrayList<Car> cars) throws IOException
 	{
 		this.canvas.bkG.drawImage(this.background,0,0,null);
 		for(Car elem : cars)
 		{
+			elem.updatePicture();
 			this.canvas.bkG.drawImage(elem.picture, elem.x, elem.y, null);
 		}
 	}

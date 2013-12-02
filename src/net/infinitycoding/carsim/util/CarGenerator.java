@@ -18,8 +18,8 @@ public class CarGenerator
 				int strasse = (int) (Math.random() * level.streetcount);
 				Car neu = new Car(strasse);
 				int street = (int) (Math.random() * (level.streetcount));
-				neu.x = level.streets.get(street).startX;
-				neu.y = level.streets.get(street).startY;
+				neu.setX(level.streets.get(street).startX);
+				neu.setY(level.streets.get(street).startY);
 				neu.streetNum = street;
 				switch(level.streets.get(street).rotatioAngel)
 				{

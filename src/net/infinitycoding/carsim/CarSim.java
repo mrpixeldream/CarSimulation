@@ -87,7 +87,7 @@ public class CarSim
 			{				
 				for(Car other_car : cars)
 				{
-					if(car.collisionBox.intersects(other_car.collisionBox))
+					if(car.collisionBox.intersects(other_car.collisionBox) && car != other_car)
 					{
 						if(other_car.isDriving)
 						{
@@ -104,16 +104,16 @@ public class CarSim
 					switch(car.direction)
 					{
 						case 1:
-							car.x -= 1;
+							car.setX(car.x -1);
 							break;
 						case 2:
-							car.y-= 1;
+							car.setY(car.y - 1);
 							break;
 						case 3:
-							car.x += 1;
+							car.setX(car.x + 1);
 							break;
 						case 4:
-							car.y += 1;
+							car.setY(car.y + 1);
 							break;
 						}
 				}
