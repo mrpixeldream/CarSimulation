@@ -1,6 +1,5 @@
 package net.infinitycoding.carsim;
 
-import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -133,7 +132,9 @@ public class CarSim
 
 	private void gameOver()
 	{
-		JOptionPane.showMessageDialog(null, "Game over!", "Game over!", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Game Over", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+
+		System.exit(0);
 	}
 
 	public boolean isRunning()
