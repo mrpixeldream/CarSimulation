@@ -13,6 +13,7 @@ public class Street
 	public ImageIcon streetPic;
 	public AffineTransform transform;
 	public int rotatioAngel ;
+	public boolean hasSpawnedCar = false;
 	
 	public Street(Rectangle stopLine, int startX, int startY, TrafficLight trafficLight, int rotation)
 	{
