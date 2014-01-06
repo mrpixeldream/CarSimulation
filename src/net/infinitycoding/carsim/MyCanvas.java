@@ -75,7 +75,7 @@ public class MyCanvas extends Canvas
 	        	fps = 1;
 	        }
 	        
-	        System.out.println(fps + " FPS");
+	        //System.out.println(fps + " FPS");
 		}
 		
 	}

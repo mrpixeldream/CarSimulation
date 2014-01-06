@@ -131,7 +131,7 @@ public class LevelLoader
 			int sX = spawnIterator.next();
 			int sY = carSpawns.get(sX);
 			
-			streets[i] = new Street(new Rectangle(x, y, 0, 0), sX, sY, new TrafficLight(tfX, tfY), rotations.get(i));
+			streets[i] = new Street(new Rectangle(x, y, 1, 1), sX, sY, new TrafficLight(tfX, tfY), rotations.get(i));
 		}
 		
 		return new Level(streets, maxCars, carRatio, lvlPic);

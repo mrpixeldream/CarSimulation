@@ -82,6 +82,13 @@ public class CarSim
 		for(Car car : cars)
 		{
 			collision = false;
+			for(int streetNum : level.streets.keySet()){
+				if(car.collisionBox.intersects(level.streets.get(streetNum).stopLine)){
+					car.isDriving = false;
+				}else{
+					car.isDriving = true;
+				}
+			}
 			if(car.isDriving)
 			{				
 				for(Car other_car : cars)
@@ -128,6 +135,7 @@ public class CarSim
 				this.level.streets.get(nummer).trafficLight.changeLight();
 			}
 		}
+		System.out.println("Klick an: "+x+" "+y);
 	}
 
 	private void gameOver()
