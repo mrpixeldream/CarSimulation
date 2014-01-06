@@ -1,10 +1,10 @@
 streetcount=4
-stopline0=10,10
-stopline1=20,20
-stopline2=30,30
-stopline3=40,40
+stopline0=572,345
+stopline1=0,0
+stopline2=1,1
+stopline3=2,2
 lvlname=strasse.png
-maxcars=1
+maxcars=4
 spawnrate=0.5
 spawn0=510,0
 spawn1=1200,400
