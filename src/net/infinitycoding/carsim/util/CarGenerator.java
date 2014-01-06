@@ -15,13 +15,18 @@ public class CarGenerator
 			double zahl = Math.random();
 			if(zahl <= level.CAR_RATIO)
 			{
-				int strasse = (int) (Math.random() * level.streetcount);
-				Car neu = new Car(strasse);
-				int street = (int) (Math.random() * (level.streetcount));
-				neu.setX(level.streets.get(street).startX);
-				neu.setY(level.streets.get(street).startY);
-				neu.streetNum = street;
-				switch(level.streets.get(street).rotatioAngel)
+				int streetNum;
+				do
+				{
+					streetNum = (int) (Math.random() * level.streetcount);
+				} while (level.streets.get(streetNum).hasSpawnedCar);
+				
+				level.streets.get(streetNum).hasSpawnedCar = true;
+				Car neu = new Car(streetNum);
+				neu.setX(level.streets.get(streetNum).startX);
+				neu.setY(level.streets.get(streetNum).startY);
+				neu.streetNum = streetNum;
+				switch(level.streets.get(streetNum).rotatioAngel)
 				{
 					case 180:
 						neu.direction = 1;
