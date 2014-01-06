@@ -1,7 +1,7 @@
 streetcount=4
 stopline0=736,699
-stopline1=823,459
-stopline2=1,1
+stopline1=479,612
+stopline2=0,0
 stopline3=2,2
 lvlname=strasse.png
 maxcars=4

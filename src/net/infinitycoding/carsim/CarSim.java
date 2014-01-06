@@ -78,21 +78,29 @@ public class CarSim
 	
 	private void moveCars(long difTime)
 	{
+		int zahl = 0;
 		boolean collision;
 		for(Car car : cars)
 		{
 			collision = false;
-			for(int streetNum : level.streets.keySet()){
-				if(car.collisionBox.intersects(level.streets.get(streetNum).stopLine) && !level.streets.get(streetNum).trafficLight.getOn()){
-					car.isDriving = false;
-					collision = true;
-				}else{
-					car.isDriving = true;
-					collision = false;
+			for(int streetNum : level.streets.keySet())
+			{
+				if(!collision)
+				{
+					if(car.collisionBox.intersects(level.streets.get(streetNum).stopLine) && !level.streets.get(streetNum).trafficLight.getOn())
+					{
+						car.isDriving = false;
+						collision = true;
+					}
+					else
+					{
+						car.isDriving = true;
+						collision = false;
+					}
 				}
 			}
 			if(car.isDriving)
-			{				
+			{
 				for(Car other_car : cars)
 				{
 					if(car.collisionBox.intersects(other_car.collisionBox) && car != other_car)
@@ -109,6 +117,7 @@ public class CarSim
 				}
 				if(!collision)
 				{
+					zahl++;
 					switch(car.direction)
 					{
 						case 1:
@@ -127,6 +136,7 @@ public class CarSim
 				}
 			}
 		}
+		//System.out.println(zahl);
 	}
 	public void onClick(int x, int y)
 	{
