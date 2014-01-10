@@ -2,9 +2,9 @@ package net.infinitycoding.carsim.modules.io;
 
 import java.awt.Rectangle;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -20,20 +20,21 @@ public class LevelLoader
 	static int maxCars;
 	static float carRatio;
 	static int streetCount;
-	static HashMap<Integer, Integer> stopLineCoords = new HashMap<Integer, Integer>();
-	static HashMap<Integer, Integer> carSpawns = new HashMap<Integer, Integer>();
-	static HashMap<Integer, Integer> trafficLightCoords = new HashMap<Integer, Integer>();
-	static ArrayList<Integer> rotations = new ArrayList<Integer>();
+	static LinkedHashMap<Integer, Integer> stopLineCoords = new LinkedHashMap<Integer, Integer>();
+	static LinkedHashMap<Integer, Integer> carSpawns = new LinkedHashMap<Integer, Integer>();
+	static LinkedHashMap<Integer, Integer> trafficLightCoords = new LinkedHashMap<Integer, Integer>();
+	static LinkedList<Integer> rotations = new LinkedList<Integer>();
 	
 	public static Level loadLevel(String lvlFileName) throws LevelFormatException, IOException
 	{
-		HashMap<String, String> contents = new HashMap<String, String>();
+
+		LinkedHashMap<String, String> contents = new LinkedHashMap<String, String>();
 		Scanner scr = new Scanner(CarSim.class.getResourceAsStream(lvlFileName));
 			
 		while (scr.hasNext())
 		{
 			String line = scr.nextLine();
-			//System.out.println("Line: " + line);
+			System.out.println("Line: " + line);
 			String key = line.split("=")[0];
 			String val = line.split("=")[1];
 			contents.put(key, val);
@@ -43,7 +44,10 @@ public class LevelLoader
 			//System.out.println("Value: " + val);
 			//System.out.println("------------------");
 		}
-		
+		for(String i : contents.keySet())
+		{
+			System.out.println(i);
+		}
 		Set<String> keys = contents.keySet();
 		
 		int lineCount = 0;
@@ -132,6 +136,9 @@ public class LevelLoader
 			int sY = carSpawns.get(sX);
 			
 			streets[i] = new Street(new Rectangle(x, y, 5, 5), sX, sY, new TrafficLight(tfX, tfY), rotations.get(i));
+			System.out.println(streets[i].stopLine.x);
+			System.out.println(streets[i].trafficLight.x);
+			System.out.println("---");
 		}
 		
 		return new Level(streets, maxCars, carRatio, lvlPic);

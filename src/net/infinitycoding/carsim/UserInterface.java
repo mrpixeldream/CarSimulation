@@ -60,7 +60,7 @@ public class UserInterface extends JFrame
 		// TODO Auto-generated method stub
 	}
 
-	public void drawCars(ArrayList<Car> cars) throws IOException
+	public synchronized void drawCars(ArrayList<Car> cars) throws IOException
 	{
 		this.canvas.bkG.drawImage(this.background,0,0,null);
 		for(Car elem : cars)
@@ -70,7 +70,7 @@ public class UserInterface extends JFrame
 		}
 	}
 
-	public void drawLights(HashMap<Integer, Street> streets) {
+	public synchronized void drawLights(HashMap<Integer, Street> streets) {
 		for(Integer street : streets.keySet())
 		{
 			if(streets.get(street).trafficLight.getOn())

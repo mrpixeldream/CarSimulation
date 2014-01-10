@@ -65,6 +65,7 @@ public class CarSim
 			{
 				this.cars.add(temp);
 			}
+			this.checkCarsOut();
 			this.moveCars(difTime);
 			this.userInterface.canvas.startDraw();
 			this.userInterface.drawCars(this.cars);
@@ -76,6 +77,29 @@ public class CarSim
 		}
 	}
 	
+	private synchronized void checkCarsOut() {
+		for(Car car : this.cars)
+		{
+			if(0 < car.x && car.x < 1280){}
+			else
+			{
+				System.out.println("LOESCHEN");
+				car.isDriving = false;
+				this.level.streets.get(car.streetNum).hasSpawnedCar = false;
+				this.cars.remove(car);
+			}
+			if(0 < car.y && car.y < 1024){}
+			else
+			{
+				System.out.println("LOESCHEN");
+				car.isDriving = false;
+				this.level.streets.get(car.streetNum).hasSpawnedCar = false;
+				this.cars.remove(car);
+			}
+		}
+		
+	}
+
 	private void moveCars(long difTime)
 	{
 		int zahl = 0;
@@ -145,6 +169,9 @@ public class CarSim
 			if(this.level.streets.get(nummer).trafficLight.box.contains(x, y))
 			{
 				this.level.streets.get(nummer).trafficLight.changeLight();
+				//System.out.println(this.level.streets.get(nummer).trafficLight.x);
+				//
+				System.out.println(this.level.streets.get(nummer).stopLine.x);
 			}
 		}
 		System.out.println("Klick an: "+x+","+y);

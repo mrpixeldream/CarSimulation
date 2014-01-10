@@ -59,7 +59,7 @@ public class MyCanvas extends Canvas
 		
 	}
 
-	public void flip() {
+	public synchronized void flip() {
 		this.bkG.dispose();
 		strategy.show();
 		Toolkit.getDefaultToolkit().sync();
@@ -81,13 +81,13 @@ public class MyCanvas extends Canvas
 	}
 
 
-	public void startDraw() {
+	public synchronized void startDraw() {
 		this.bkG = (Graphics2D) strategy.getDrawGraphics(); 
 		this.bkG.fillRect(0, 0, getWidth(), getHeight());
 		
 	}
 
-	public void start() {
+	public synchronized void start() {
 		this.createBufferStrategy(2);
 		strategy = this.getBufferStrategy();
 		
