@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import net.infinitycoding.carsim.modules.Car;
 import net.infinitycoding.carsim.modules.Level;
 
-public class CarGenerator
+public class CarGenerator extends Thread
 {
 	private Car carToGenerate;
 	
@@ -32,38 +32,44 @@ public class CarGenerator
 			{
 				int streetNum;
 				boolean freeSpace = false;
-				do
+				
+				streetNum = (int) (Math.random() * level.streetcount);
+					
+				carToGenerate = new Car(streetNum);
+				carToGenerate.setX(level.streets.get(streetNum).startX);
+				carToGenerate.setY(level.streets.get(streetNum).startY);
+				carToGenerate.streetNum = streetNum;
+					
+				freeSpace = spawnFree(carToGenerate, cars);
+
+				if (freeSpace)
 				{
-					streetNum = (int) (Math.random() * level.streetcount);
-					
-					carToGenerate = new Car(streetNum);
-					carToGenerate.setX(level.streets.get(streetNum).startX);
-					carToGenerate.setY(level.streets.get(streetNum).startY);
-					carToGenerate.streetNum = streetNum;
-					
-					freeSpace = spawnFree(carToGenerate, cars);
-				} while (!freeSpace);
+					switch(level.streets.get(streetNum).rotatioAngel)
+					{
+						case 180:
+							carToGenerate.direction = 1;
+							break;
+						case 270:
+							carToGenerate.direction = 4;
+							break;
+						case 0:
+							carToGenerate.direction = 3;
+							break;
+						case 90:
+							carToGenerate.direction = 2;
+							break;
+					}
+					return carToGenerate;
+				}
 				
 				//level.streets.get(streetNum).hasSpawnedCar = true;
-				
-				switch(level.streets.get(streetNum).rotatioAngel)
-				{
-					case 180:
-						carToGenerate.direction = 1;
-						break;
-					case 270:
-						carToGenerate.direction = 4;
-						break;
-					case 0:
-						carToGenerate.direction = 3;
-						break;
-					case 90:
-						carToGenerate.direction = 2;
-						break;
-				}
-				return carToGenerate;
 			}
 		}
 		return null;
+	}
+	
+	public void run()
+	{
+		
 	}
 }

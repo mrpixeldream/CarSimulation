@@ -61,18 +61,25 @@ public class CarSim
 		{
 			difTime = afterTime - beforeTime;
 			beforeTime = System.currentTimeMillis();
+			System.out.println("test");
 			Car temp = this.generator.genNewCars(this.cars,this.level);
 			if(temp != null)
 			{
 				this.cars.add(temp);
 			}
 			this.checkCarsOut();
+			System.out.println("pre move");
 			this.moveCars(difTime);
+			System.out.println("after move");
 			this.userInterface.canvas.startDraw();
+			System.out.println("after draw");
 			this.userInterface.drawCars(this.cars);
 			this.userInterface.drawLights(this.level.streets);
+			System.out.println("elem draw");
 			this.userInterface.canvas.flip();
+			System.out.println("page flip");
 			this.userInterface.checkCollision();
+			System.out.println("after collision check");
 			
 			afterTime = System.currentTimeMillis();
 		}
@@ -102,6 +109,7 @@ public class CarSim
 
 	private void moveCars(long difTime)
 	{
+		System.out.println("move");
 		int zahl = 0;
 		boolean collision;
 		for(Car car : cars)
