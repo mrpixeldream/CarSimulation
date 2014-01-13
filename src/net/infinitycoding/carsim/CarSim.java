@@ -82,7 +82,7 @@ public class CarSim
 		
 		for(Car car : carList)
 		{
-			if(0 < car.x && car.x < 1280){}
+			if(-1 < car.x && car.x < 1281){}
 			else
 			{
 				System.out.println("LOESCHEN");
@@ -90,7 +90,7 @@ public class CarSim
 				this.level.streets.get(car.streetNum).hasSpawnedCar = false;
 				carList.remove(car);
 			}
-			if(0 < car.y && car.y < 1024){}
+			if(-1 < car.y && car.y < 1025){}
 			else
 			{
 				System.out.println("LOESCHEN");

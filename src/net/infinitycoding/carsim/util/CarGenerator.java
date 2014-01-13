@@ -8,6 +8,21 @@ import net.infinitycoding.carsim.modules.Level;
 
 public class CarGenerator
 {
+	private Car carToGenerate;
+	
+	private boolean spawnFree(Car car, ArrayList<Car> otherCars)
+	{
+		for (Car elem : otherCars)
+		{
+			if (elem.collisionBox.intersects(car.collisionBox))
+			{
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
 	public Car genNewCars(ArrayList<Car> cars, Level level) throws IOException
 	{
 		if(cars.size() < level.MAX_CARS)
@@ -16,32 +31,37 @@ public class CarGenerator
 			if(zahl <= level.CAR_RATIO)
 			{
 				int streetNum;
+				boolean freeSpace = false;
 				do
 				{
 					streetNum = (int) (Math.random() * level.streetcount);
-				} while (level.streets.get(streetNum).hasSpawnedCar);
+					
+					carToGenerate = new Car(streetNum);
+					carToGenerate.setX(level.streets.get(streetNum).startX);
+					carToGenerate.setY(level.streets.get(streetNum).startY);
+					carToGenerate.streetNum = streetNum;
+					
+					freeSpace = spawnFree(carToGenerate, cars);
+				} while (!freeSpace);
 				
-				level.streets.get(streetNum).hasSpawnedCar = true;
-				Car neu = new Car(streetNum);
-				neu.setX(level.streets.get(streetNum).startX);
-				neu.setY(level.streets.get(streetNum).startY);
-				neu.streetNum = streetNum;
+				//level.streets.get(streetNum).hasSpawnedCar = true;
+				
 				switch(level.streets.get(streetNum).rotatioAngel)
 				{
 					case 180:
-						neu.direction = 1;
+						carToGenerate.direction = 1;
 						break;
 					case 270:
-						neu.direction = 4;
+						carToGenerate.direction = 4;
 						break;
 					case 0:
-						neu.direction = 3;
+						carToGenerate.direction = 3;
 						break;
 					case 90:
-						neu.direction = 2;
+						carToGenerate.direction = 2;
 						break;
 				}
-				return neu;
+				return carToGenerate;
 			}
 		}
 		return null;
