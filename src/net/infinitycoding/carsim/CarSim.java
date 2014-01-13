@@ -78,7 +78,9 @@ public class CarSim
 	}
 	
 	private synchronized void checkCarsOut() {
-		for(Car car : this.cars)
+		ArrayList<Car> carList = this.cars;
+		
+		for(Car car : carList)
 		{
 			if(0 < car.x && car.x < 1280){}
 			else
@@ -86,7 +88,7 @@ public class CarSim
 				System.out.println("LOESCHEN");
 				car.isDriving = false;
 				this.level.streets.get(car.streetNum).hasSpawnedCar = false;
-				this.cars.remove(car);
+				carList.remove(car);
 			}
 			if(0 < car.y && car.y < 1024){}
 			else
@@ -94,9 +96,10 @@ public class CarSim
 				System.out.println("LOESCHEN");
 				car.isDriving = false;
 				this.level.streets.get(car.streetNum).hasSpawnedCar = false;
-				this.cars.remove(car);
+				carList.remove(car);
 			}
 		}
+			this.cars = carList;
 		
 	}
 
