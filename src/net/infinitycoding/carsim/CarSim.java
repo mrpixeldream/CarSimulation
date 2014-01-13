@@ -3,6 +3,7 @@ package net.infinitycoding.carsim;
 import java.awt.Image;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
@@ -78,28 +79,24 @@ public class CarSim
 	}
 	
 	private synchronized void checkCarsOut() {
-		ArrayList<Car> carList = this.cars;
-		
-		for(Car car : carList)
+		for(Iterator<Car> it = this.cars.iterator(); it.hasNext();)
 		{
+			Car car = it.next();
 			if(-1 < car.x && car.x < 1281){}
 			else
 			{
 				System.out.println("LOESCHEN");
-				car.isDriving = false;
 				this.level.streets.get(car.streetNum).hasSpawnedCar = false;
-				carList.remove(car);
+				it.remove();
 			}
 			if(-1 < car.y && car.y < 1025){}
 			else
 			{
 				System.out.println("LOESCHEN");
-				car.isDriving = false;
 				this.level.streets.get(car.streetNum).hasSpawnedCar = false;
-				carList.remove(car);
+				it.remove();
 			}
 		}
-			this.cars = carList;
 		
 	}
 
