@@ -1,11 +1,17 @@
 package net.infinitycoding.carsim;
 
 import java.awt.Image;
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
 import javax.swing.JOptionPane;
 
 import net.infinitycoding.carsim.exceptions.LevelFormatException;
@@ -21,6 +27,7 @@ public class CarSim
 	private CarGenerator generator;
 	private UserInterface userInterface;
 	private Level level;
+	private Clip crashSound;
 
 	public static void main(String[] args)
 	{
@@ -37,6 +44,24 @@ public class CarSim
 	
 	public void start() throws IOException
 	{
+		System.out.println("Reading sound...");
+		
+		try
+		{
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new BufferedInputStream(getClass().getResourceAsStream("res/crash.wav")));
+	        AudioFormat af = audioInputStream.getFormat();
+	        int size = (int) (af.getFrameSize() * audioInputStream.getFrameLength());
+	        byte[] audio = new byte[size];
+	        DataLine.Info info = new DataLine.Info(Clip.class, af, size);
+	        audioInputStream.read(audio, 0, size);
+	        crashSound = (Clip) AudioSystem.getLine(info);
+	        crashSound.open(af, audio, 0, size);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		
 		long beforeTime = 0;
 		long afterTime = 0;
 		long difTime = 0;
@@ -110,7 +135,7 @@ public class CarSim
 	private void moveCars(long difTime)
 	{
 		System.out.println("move");
-		int zahl = 0;
+		//int zahl = 0;
 		boolean collision;
 		for(Car car : cars)
 		{
@@ -149,7 +174,7 @@ public class CarSim
 				}
 				if(!collision)
 				{
-					zahl++;
+					//zahl++;
 					switch(car.direction)
 					{
 						case 1:
@@ -187,6 +212,15 @@ public class CarSim
 
 	private void gameOver()
 	{
+		try
+		{
+            crashSound.start();
+        }
+		catch(Exception e)
+		{ 
+			e.printStackTrace(); 
+		
+		}
 		JOptionPane.showMessageDialog(null, "Game Over", "Game Over", JOptionPane.INFORMATION_MESSAGE);
 
 		System.exit(0);
