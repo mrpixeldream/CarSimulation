@@ -11,6 +11,7 @@ import net.infinitycoding.carsim.CarSim;
 public class Car
 {
 	public Rectangle collisionBox = new Rectangle();
+	public int warten = 101;
 	public boolean isDriving = true;
 	public int direction;
 	public int x = 0;
@@ -24,8 +25,8 @@ public class Car
 	
 	public Car(int streetNum) throws IOException
 	{
-		this.collisionBox.width = 123;
-		this.collisionBox.height = 114;
+		this.collisionBox.width = 99;
+		this.collisionBox.height = 99;
 		this.streetNum = streetNum;
 		this.picture4 = ImageIO.read(CarSim.class.getResource("res/auto4.png"));
 		this.picture1 = ImageIO.read(CarSim.class.getResource("res/auto1.png"));

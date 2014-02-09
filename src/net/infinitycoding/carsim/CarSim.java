@@ -28,6 +28,7 @@ public class CarSim
 	private UserInterface userInterface;
 	private Level level;
 	private Clip crashSound;
+	private Car markedCar;
 
 	public static void main(String[] args)
 	{
@@ -86,25 +87,26 @@ public class CarSim
 		{
 			difTime = afterTime - beforeTime;
 			beforeTime = System.currentTimeMillis();
-			System.out.println("test");
+			//System.out.println("test");
 			Car temp = this.generator.genNewCars(this.cars,this.level);
 			if(temp != null)
 			{
 				this.cars.add(temp);
 			}
 			this.checkCarsOut();
-			System.out.println("pre move");
+			//System.out.println("pre move");
 			this.moveCars(difTime);
-			System.out.println("after move");
+			//System.out.println("after move");
 			this.userInterface.canvas.startDraw();
-			System.out.println("after draw");
+			//System.out.println("after draw");
 			this.userInterface.drawCars(this.cars);
 			this.userInterface.drawLights(this.level.streets);
-			System.out.println("elem draw");
+			//System.out.println("elem draw");
 			this.userInterface.canvas.flip();
-			System.out.println("page flip");
+			//System.out.println("page flip");
 			this.userInterface.checkCollision();
-			System.out.println("after collision check");
+			//System.out.println("after collision check");
+			
 			
 			afterTime = System.currentTimeMillis();
 		}
@@ -132,64 +134,117 @@ public class CarSim
 		
 	}
 
-	private void moveCars(long difTime)
+	private void moveCars(long difTime) throws IOException
 	{
-		System.out.println("move");
-		//int zahl = 0;
 		boolean collision;
+		System.out.println(this.cars.contains(this.markedCar));
+		for(Car car : cars){
+			if(this.markedCar == car){
+				System.out.println("Angesteurert");
+			}
+		}
 		for(Car car : cars)
 		{
-			collision = false;
-			for(int streetNum : level.streets.keySet())
+			boolean weiter = true;
+			
+			if(car.warten <= 20)
 			{
-				if(!collision)
+				if(this.markedCar == car)
 				{
-					if(car.collisionBox.intersects(level.streets.get(streetNum).stopLine) && !level.streets.get(streetNum).trafficLight.getOn())
-					{
-						car.isDriving = false;
-						collision = true;
-					}
-					else
-					{
-						car.isDriving = true;
-						collision = false;
-					}
+					System.out.println("Wartet");
 				}
+				
+				car.warten++;
+				weiter = false;
 			}
-			if(car.isDriving)
+			if(weiter)
 			{
-				for(Car other_car : cars)
+				collision = false;
+				for(int streetNum : level.streets.keySet())
 				{
-					if(car.collisionBox.intersects(other_car.collisionBox) && car != other_car)
+					if(!collision)
 					{
-						if(other_car.isDriving)
+						if(car.collisionBox.intersects(level.streets.get(streetNum).stopLine) && !level.streets.get(streetNum).trafficLight.getOn())
 						{
-							this.gameOver();
+							car.isDriving = false;
+							collision = true;
 						}
 						else
 						{
-							collision = true;
+							car.isDriving = true;
+							collision = false;
 						}
 					}
 				}
-				if(!collision)
+				
+				// Prepare the casr to check collisions
+				Car checkCar = new Car(car.streetNum);
+				checkCar.setX(car.x);
+				checkCar.setY(car.y);
+				checkCar.direction = car.direction;
+				// Moves the checkCar a little bit to look in the fututre :D
+				switch(checkCar.direction)
 				{
-					//zahl++;
-					switch(car.direction)
+					case 1:
+						checkCar.setX(checkCar.x -10);
+						break;
+					case 2:
+						checkCar.setY(checkCar.y - 10);
+						break;
+					case 3:
+						checkCar.setX(checkCar.x + 10);
+						break;
+					case 4:
+						checkCar.setY(checkCar.y + 10);
+						break;
+				}
+				
+				
+				if(car.isDriving)
+				{
+					if(this.markedCar == car){
+						System.out.println("Is driving");
+					}
+					for(Car other_car : cars)
 					{
-						case 1:
-							car.setX(car.x -1);
-							break;
-						case 2:
-							car.setY(car.y - 1);
-							break;
-						case 3:
-							car.setX(car.x + 1);
-							break;
-						case 4:
-							car.setY(car.y + 1);
-							break;
+						if(checkCar.collisionBox.intersects(other_car.collisionBox) && car != other_car)
+						{
+							if(other_car.isDriving)
+							{
+								if(car.collisionBox.intersects(other_car.collisionBox) && car != other_car)
+								{
+									this.gameOver();
+								}
+							}
+							else
+							{
+								collision = true;
+								car.warten = 0;
+							}
 						}
+					}
+					if(!collision)
+					{
+						if(this.markedCar == car){
+							System.out.println("Fährt");
+						}
+						//zahl++;
+						switch(car.direction)
+						{
+							case 1:
+								car.setX(car.x -1);
+								break;
+							case 2:
+								car.setY(car.y - 1);
+								break;
+							case 3:
+								car.setX(car.x + 1);
+								break;
+							case 4:
+								car.setY(car.y + 1);
+								break;
+							}
+					}
 				}
 			}
 		}
@@ -208,6 +263,16 @@ public class CarSim
 			}
 		}
 		System.out.println("Klick an: "+x+","+y);
+		for(Car car : this.cars){
+			if(car.collisionBox.contains(x,y)){
+				System.out.println("--------------------------------");
+				System.out.println("Warten: "+car.warten);
+				System.out.println("Driving: "+car.isDriving);
+				System.out.println("Direction: "+car.direction);
+				this.markedCar = car;
+			}
+		}
+		
 	}
 
 	private void gameOver()
