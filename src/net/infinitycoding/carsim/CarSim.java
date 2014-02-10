@@ -29,6 +29,8 @@ public class CarSim
 	private Level level;
 	private Clip crashSound;
 	private Car markedCar;
+	
+	private int tickJumper = 0;
 
 	public static void main(String[] args)
 	{
@@ -101,6 +103,7 @@ public class CarSim
 			//System.out.println("after draw");
 			this.userInterface.drawCars(this.cars);
 			this.userInterface.drawLights(this.level.streets);
+			this.userInterface.drawFPS(this.userInterface.canvas.fps);
 			//System.out.println("elem draw");
 			this.userInterface.canvas.flip();
 			//System.out.println("page flip");
@@ -109,6 +112,11 @@ public class CarSim
 			
 			
 			afterTime = System.currentTimeMillis();
+			
+			if (tickJumper == 60)
+			{
+				tickJumper = 0;
+			}
 		}
 	}
 	
@@ -132,6 +140,11 @@ public class CarSim
 			}
 		}
 		
+	}
+	
+	public int getJumpedTicks()
+	{
+		return tickJumper;
 	}
 
 	private void moveCars(long difTime) throws IOException
@@ -232,16 +245,16 @@ public class CarSim
 						switch(car.direction)
 						{
 							case 1:
-								car.setX(car.x -1);
+								car.setX(car.x -4);
 								break;
 							case 2:
-								car.setY(car.y - 1);
+								car.setY(car.y - 4);
 								break;
 							case 3:
-								car.setX(car.x + 1);
+								car.setX(car.x + 4);
 								break;
 							case 4:
-								car.setY(car.y + 1);
+								car.setY(car.y + 4);
 								break;
 							}
 					}

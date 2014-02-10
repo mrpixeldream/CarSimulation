@@ -25,10 +25,13 @@ public class UserInterface extends JFrame
 	private Image offscreen;
 	private Graphics offgc;
 	private JPanel JPanel;
+	private CarSim parent;
 	
 	public UserInterface(Image background2, CarSim carSim)
 	{
 		super();
+		
+		this.parent = carSim;
 		
 		this.background = background2;
 		
@@ -84,6 +87,14 @@ public class UserInterface extends JFrame
 			
 		}
 		
+	}
+	
+	public void drawFPS(long fps)
+	{
+		if (parent.getJumpedTicks() < 50)
+		{
+			this.canvas.bkG.drawString("" + fps, 50, 50);
+		}
 	}
 	
 }
