@@ -30,6 +30,7 @@ public class CarSim
 	private Clip crashSound;
 	private Car markedCar;
 	public int points = 0;
+	private int multi = 1;
 
 	public static void main(String[] args)
 	{
@@ -125,6 +126,19 @@ public class CarSim
 				this.level.streets.get(car.streetNum).hasSpawnedCar = false;
 				it.remove();
 				this.points++;
+				
+				if(this.points > 5){
+					this.multi = 2;
+				}
+				if(this.points > 10){
+					this.multi = 3;
+				}
+				if(this.points > 20){
+					this.multi = 4;
+				}
+				if(this.points > 30){
+					this.multi = 5;
+				}
 			}
 			if(-1 < car.y && car.y < 1025){}
 			else
@@ -133,6 +147,19 @@ public class CarSim
 				this.level.streets.get(car.streetNum).hasSpawnedCar = false;
 				it.remove();
 				this.points++;
+				
+				if(this.points > 5){
+					this.multi = 2;
+				}
+				if(this.points > 10){
+					this.multi = 3;
+				}
+				if(this.points > 20){
+					this.multi = 4;
+				}
+				if(this.points > 30){
+					this.multi = 5;
+				}
 			}
 		}
 		
@@ -220,16 +247,16 @@ public class CarSim
 						switch(car.direction)
 						{
 							case 1:
-								car.setX(car.x -2);
+								car.setX(car.x -1*this.multi);
 								break;
 							case 2:
-								car.setY(car.y - 2);
+								car.setY(car.y - 1*this.multi);
 								break;
 							case 3:
-								car.setX(car.x + 2);
+								car.setX(car.x + 1*this.multi);
 								break;
 							case 4:
-								car.setY(car.y + 2);
+								car.setY(car.y + 1*this.multi);
 								break;
 							}
 					}
