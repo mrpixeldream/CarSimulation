@@ -29,6 +29,7 @@ public class CarSim
 	private Level level;
 	private Clip crashSound;
 	private Car markedCar;
+	private int tickJumper = 0;
 	public int points = 0;
 	private int multi = 1;
 
@@ -103,6 +104,7 @@ public class CarSim
 			//System.out.println("after draw");
 			this.userInterface.drawCars(this.cars);
 			this.userInterface.drawLights(this.level.streets);
+			this.userInterface.drawFPS(this.userInterface.canvas.fps);
 			this.userInterface.drawPoints(this.points);
 			//System.out.println("elem draw");
 			this.userInterface.canvas.flip();
@@ -112,6 +114,11 @@ public class CarSim
 			
 			
 			afterTime = System.currentTimeMillis();
+			
+			if (tickJumper == 60)
+			{
+				tickJumper = 0;
+			}
 		}
 	}
 	
@@ -163,6 +170,11 @@ public class CarSim
 			}
 		}
 		
+	}
+	
+	public int getJumpedTicks()
+	{
+		return tickJumper;
 	}
 
 	private void moveCars(long difTime) throws IOException
