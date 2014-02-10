@@ -62,7 +62,12 @@ public class UserInterface extends JFrame
 	{
 		// TODO Auto-generated method stub
 	}
-
+		
+	public void drawPoints(int point)
+	{
+		this.canvas.bkG.drawString(String.valueOf(point),1024,59);
+	}
+	
 	public synchronized void drawCars(ArrayList<Car> cars) throws IOException
 	{
 		this.canvas.bkG.drawImage(this.background,0,0,null);

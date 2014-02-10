@@ -29,8 +29,8 @@ public class CarSim
 	private Level level;
 	private Clip crashSound;
 	private Car markedCar;
-	
 	private int tickJumper = 0;
+	public int points = 0;
 
 	public static void main(String[] args)
 	{
@@ -104,6 +104,7 @@ public class CarSim
 			this.userInterface.drawCars(this.cars);
 			this.userInterface.drawLights(this.level.streets);
 			this.userInterface.drawFPS(this.userInterface.canvas.fps);
+			this.userInterface.drawPoints(this.points);
 			//System.out.println("elem draw");
 			this.userInterface.canvas.flip();
 			//System.out.println("page flip");
@@ -130,6 +131,7 @@ public class CarSim
 				System.out.println("LOESCHEN");
 				this.level.streets.get(car.streetNum).hasSpawnedCar = false;
 				it.remove();
+				this.points++;
 			}
 			if(-1 < car.y && car.y < 1025){}
 			else
@@ -137,6 +139,7 @@ public class CarSim
 				System.out.println("LOESCHEN");
 				this.level.streets.get(car.streetNum).hasSpawnedCar = false;
 				it.remove();
+				this.points++;
 			}
 		}
 		
@@ -150,22 +153,12 @@ public class CarSim
 	private void moveCars(long difTime) throws IOException
 	{
 		boolean collision;
-		System.out.println(this.cars.contains(this.markedCar));
-		for(Car car : cars){
-			if(this.markedCar == car){
-				System.out.println("Angesteurert");
-			}
-		}
 		for(Car car : cars)
 		{
 			boolean weiter = true;
 			
 			if(car.warten <= 20)
 			{
-				if(this.markedCar == car)
-				{
-					System.out.println("Wartet");
-				}
 				
 				car.warten++;
 				weiter = false;
@@ -215,9 +208,6 @@ public class CarSim
 				
 				if(car.isDriving)
 				{
-					if(this.markedCar == car){
-						System.out.println("Is driving");
-					}
 					for(Car other_car : cars)
 					{
 						if(checkCar.collisionBox.intersects(other_car.collisionBox) && car != other_car)
@@ -238,23 +228,24 @@ public class CarSim
 					}
 					if(!collision)
 					{
-						if(this.markedCar == car){
-							System.out.println("Fährt");
-						}
 						//zahl++;
 						switch(car.direction)
 						{
 							case 1:
 								car.setX(car.x -4);
+								car.setX(car.x -2);
 								break;
 							case 2:
 								car.setY(car.y - 4);
+								car.setY(car.y - 2);
 								break;
 							case 3:
 								car.setX(car.x + 4);
+								car.setX(car.x + 2);
 								break;
 							case 4:
 								car.setY(car.y + 4);
+								car.setY(car.y + 2);
 								break;
 							}
 					}
