@@ -20,9 +20,8 @@ public class MyCanvas extends Canvas
 {
 	long delta = 0;
     long last = 0;
-    long fps = 10;
+    public long fps = 10;
 	private BufferStrategy strategy;
-	private Paint backgroundGradient;
 	public Graphics2D bkG;
 	
 	public MyCanvas(int width, int height, Image background2, final CarSim carSim)
@@ -82,14 +81,14 @@ public class MyCanvas extends Canvas
 
 
 	public synchronized void startDraw() {
-		this.bkG = (Graphics2D) strategy.getDrawGraphics(); 
+		
+		this.bkG = (Graphics2D) strategy.getDrawGraphics();
 		this.bkG.fillRect(0, 0, getWidth(), getHeight());
 		
 	}
 
 	public synchronized void start() {
 		this.createBufferStrategy(2);
-		strategy = this.getBufferStrategy();
-		
+		strategy = this.getBufferStrategy(); 
 	}
 }

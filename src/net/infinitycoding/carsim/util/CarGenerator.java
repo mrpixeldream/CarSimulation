@@ -3,12 +3,19 @@ package net.infinitycoding.carsim.util;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import net.infinitycoding.carsim.CarSim;
 import net.infinitycoding.carsim.modules.Car;
 import net.infinitycoding.carsim.modules.Level;
 
 public class CarGenerator extends Thread
 {
 	private Car carToGenerate;
+	private CarSim carSim;
+	
+	public CarGenerator(CarSim carSim)
+	{
+		this.carSim = carSim;
+	}
 	
 	private boolean spawnFree(Car car, ArrayList<Car> otherCars)
 	{
@@ -35,7 +42,7 @@ public class CarGenerator extends Thread
 				
 				streetNum = (int) (Math.random() * level.streetcount);
 					
-				carToGenerate = new Car(streetNum);
+				carToGenerate = new Car(streetNum, carSim);
 				carToGenerate.setX(level.streets.get(streetNum).startX);
 				carToGenerate.setY(level.streets.get(streetNum).startY);
 				carToGenerate.streetNum = streetNum;

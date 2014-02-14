@@ -16,22 +16,24 @@ import javax.swing.JOptionPane;
 
 import net.infinitycoding.carsim.exceptions.LevelFormatException;
 import net.infinitycoding.carsim.modules.Car;
+import net.infinitycoding.carsim.modules.GameLoop;
+import net.infinitycoding.carsim.modules.ImageStruct;
 import net.infinitycoding.carsim.modules.Level;
 import net.infinitycoding.carsim.modules.io.LevelLoader;
 import net.infinitycoding.carsim.util.CarGenerator;
 
 public class CarSim
 {
-	private boolean run = true;
-	private ArrayList<Car> cars = new ArrayList<Car>();
-	private CarGenerator generator;
-	private UserInterface userInterface;
-	private Level level;
+	public boolean run = true;
+	public ArrayList<Car> cars = new ArrayList<Car>();
+	public CarGenerator generator;
+	public UserInterface userInterface;
+	public Level level;
 	private Clip crashSound;
-	private Car markedCar;
-	private int tickJumper = 0;
+	public int tickJumper = 0;
 	public int points = 0;
 	private int multi = 1;
+	public ImageStruct images = new ImageStruct();
 
 	public static void main(String[] args)
 	{
@@ -66,11 +68,7 @@ public class CarSim
 			e.printStackTrace();
 		}
 		
-		long beforeTime = 0;
-		long afterTime = 0;
-		long difTime = 0;
-		
-		generator = new CarGenerator();
+		generator = new CarGenerator(this);
 		
 		try
 		{
@@ -86,43 +84,11 @@ public class CarSim
 		Image background = ImageIO.read(CarSim.class.getResource("res/strasse.png"));
 		userInterface = new UserInterface(background,this);
 		
-		while(this.run)
-		{
-			difTime = afterTime - beforeTime;
-			beforeTime = System.currentTimeMillis();
-			//System.out.println("test");
-			Car temp = this.generator.genNewCars(this.cars,this.level);
-			if(temp != null)
-			{
-				this.cars.add(temp);
-			}
-			this.checkCarsOut();
-			//System.out.println("pre move");
-			this.moveCars(difTime);
-			//System.out.println("after move");
-			this.userInterface.canvas.startDraw();
-			//System.out.println("after draw");
-			this.userInterface.drawCars(this.cars);
-			this.userInterface.drawLights(this.level.streets);
-			this.userInterface.drawFPS(this.userInterface.canvas.fps);
-			this.userInterface.drawPoints(this.points);
-			//System.out.println("elem draw");
-			this.userInterface.canvas.flip();
-			//System.out.println("page flip");
-			this.userInterface.checkCollision();
-			//System.out.println("after collision check");
-			
-			
-			afterTime = System.currentTimeMillis();
-			
-			if (tickJumper == 60)
-			{
-				tickJumper = 0;
-			}
-		}
+		GameLoop gameLoop = new GameLoop(this);
+		gameLoop.start();
 	}
 	
-	private synchronized void checkCarsOut() {
+	public void checkCarsOut() {
 		for(Iterator<Car> it = this.cars.iterator(); it.hasNext();)
 		{
 			Car car = it.next();
@@ -145,6 +111,9 @@ public class CarSim
 				}
 				if(this.points > 30){
 					this.multi = 5;
+				}
+				if(this.points > 40){
+					this.multi = 10;
 				}
 			}
 			if(-1 < car.y && car.y < 1025){}
@@ -177,7 +146,7 @@ public class CarSim
 		return tickJumper;
 	}
 
-	private void moveCars(long difTime) throws IOException
+	public void moveCars(long difTime) throws IOException
 	{
 		boolean collision;
 		for(Car car : cars)
@@ -211,7 +180,7 @@ public class CarSim
 				}
 				
 				// Prepare the casr to check collisions
-				Car checkCar = new Car(car.streetNum);
+				Car checkCar = new Car(car.streetNum, this);
 				checkCar.setX(car.x);
 				checkCar.setY(car.y);
 				checkCar.direction = car.direction;
@@ -296,7 +265,7 @@ public class CarSim
 				System.out.println("Warten: "+car.warten);
 				System.out.println("Driving: "+car.isDriving);
 				System.out.println("Direction: "+car.direction);
-				this.markedCar = car;
+				//this.markedCar = car;
 			}
 		}
 		

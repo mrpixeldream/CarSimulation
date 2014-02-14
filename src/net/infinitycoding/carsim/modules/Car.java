@@ -18,35 +18,29 @@ public class Car
 	public int y = 0;
 	public int streetNum;
 	public BufferedImage picture;
-	private BufferedImage picture4;
-	private BufferedImage picture1;
-	private BufferedImage picture2;
-	private BufferedImage picture3;
+	private CarSim carSim;
 	
-	public Car(int streetNum) throws IOException
+	public Car(int streetNum, CarSim carSim) throws IOException
 	{
 		this.collisionBox.width = 99;
 		this.collisionBox.height = 99;
 		this.streetNum = streetNum;
-		this.picture4 = ImageIO.read(CarSim.class.getResource("res/auto4.png"));
-		this.picture1 = ImageIO.read(CarSim.class.getResource("res/auto1.png"));
-		this.picture2 = ImageIO.read(CarSim.class.getResource("res/auto2.png"));
-		this.picture3 = ImageIO.read(CarSim.class.getResource("res/auto3.png"));
+		this.carSim = carSim;
 	}
 
 	public void updatePicture() throws IOException {
 		switch(direction){
 		case 1:
-			this.picture = this.picture4;
+			this.picture = this.carSim.images.picture4;
 			break;
 		case 2:
-			this.picture = this.picture1;
+			this.picture = this.carSim.images.picture1;
 			break;
 		case 3:
-			this.picture = this.picture2;
+			this.picture = this.carSim.images.picture2;
 			break;
 		case 4:
-			this.picture = this.picture3;
+			this.picture = this.carSim.images.picture3;
 			break;
 		}
 		

@@ -18,12 +18,9 @@ import net.infinitycoding.carsim.modules.Street;
 
 public class UserInterface extends JFrame
 {	
-	MyCanvas canvas;
+	public MyCanvas canvas;
 	private Image background;
-	private Graphics graphic;
 	public Dimension d;
-	private Image offscreen;
-	private Graphics offgc;
 	private JPanel JPanel;
 	private CarSim parent;
 	
